@@ -13,6 +13,7 @@ type Message = {
 export default function ChatShell(props: {
   personaId: string;
   personaName: string;
+  personaDescription: string;
   readmeUrl: string;
   wikiUrl: string;
 }) {
@@ -25,6 +26,7 @@ export default function ChatShell(props: {
   const streamDoneRef = useRef(false);
   const messagesViewportRef = useRef<HTMLDivElement | null>(null);
   const [isAnimatingText, setIsAnimatingText] = useState(false);
+  const shouldAutoScrollRef = useRef(true);
 
   function stopTypewriter() {
     if (flushTimerRef.current !== null) {
@@ -79,8 +81,17 @@ export default function ChatShell(props: {
   useEffect(() => {
     const viewport = messagesViewportRef.current;
     if (!viewport) return;
-    viewport.scrollTop = viewport.scrollHeight;
+    if (shouldAutoScrollRef.current) {
+      viewport.scrollTop = viewport.scrollHeight;
+    }
   }, [messages, isAnimatingText, isAwaitingFirstChunk]);
+
+  function handleViewportScroll() {
+    const viewport = messagesViewportRef.current;
+    if (!viewport) return;
+    const isAtBottom = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight < 50;
+    shouldAutoScrollRef.current = isAtBottom;
+  }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -91,6 +102,7 @@ export default function ChatShell(props: {
     queueRef.current = "";
     streamDoneRef.current = false;
     stopTypewriter();
+    shouldAutoScrollRef.current = true;
     setMessages([...nextMessages, { role: "assistant", content: "" }]);
     setInput("");
     setIsAwaitingFirstChunk(true);
@@ -224,7 +236,7 @@ export default function ChatShell(props: {
                   直接问。
                 </p>
                 <p className="mt-4 text-base leading-8 text-[color:var(--muted)]">
-                  这里没有多余说明。你想聊什么，就从第一句话开始。
+                  {props.personaDescription}
                 </p>
               </div>
             ) : (

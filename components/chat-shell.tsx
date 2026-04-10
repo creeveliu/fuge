@@ -228,6 +228,7 @@ export default function ChatShell(props: {
         <section className="surface min-h-0 flex-1 overflow-hidden rounded-[1.75rem]">
           <div
             ref={messagesViewportRef}
+            onScroll={handleViewportScroll}
             className="flex h-full flex-col gap-4 overflow-y-auto px-5 py-5 md:px-8 md:py-8"
           >
             {messages.length === 0 ? (

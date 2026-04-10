@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "fengge-wangmingtianya-perspective": {
+      "source": "rottenpen/fengge-wangmingtianya-perspective",
+      "sourceType": "github",
+      "computedHash": "67a54e3aecc532a4f56448d2f8ba34fc99e5a5e9133d5c5407d298f4de3676aa"
+    },
+    "huchenfeng-perspective": {
+      "source": "Janlaywss/hu-chenfeng-skill",
+      "sourceType": "github",
+      "computedHash": "8880d47bf2bd7ef7ee5bc9f5dfae09c9ca6a304da9c717bbb5bd7ad1554011ef"
+    }
+  }
+}

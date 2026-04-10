@@ -26,7 +26,7 @@ export default function HomePage() {
                 Chat With Distilled Personas
               </p>
               <p className="mt-6 max-w-xl text-lg leading-8 text-[color:var(--muted)]">
-                不是工具市场，也不是 prompt 展示页。就是一个干净的入口，让普通人直接开始聊。
+                零门槛，真对话。每个回复都带着人物的语气和锋利。
               </p>
               <div className="mt-10 flex flex-wrap gap-3 text-sm text-[color:var(--muted)]">
                 <span className="rounded-full border border-[color:var(--line)] bg-white/80 px-4 py-2">

@@ -63,6 +63,9 @@ export default function HomePage() {
               </div>
             </Link>
           ))}
+          <div className="surface rounded-[1.5rem] p-6 opacity-60">
+            <p className="font-display text-xl tracking-[-0.03em] text-[color:var(--muted)]">更多名人，敬请期待</p>
+          </div>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ export default function HomePage() {
               Fuge
             </p>
             <h1 className="font-display mt-4 max-w-3xl text-4xl leading-tight tracking-[-0.04em] md:text-6xl">
-              低门槛进入别人的脑回路。
+              与提炼人格对话。
             </h1>
           </div>
           <div className="hidden max-w-xs text-sm leading-6 text-[color:var(--muted)] md:block">

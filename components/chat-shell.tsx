@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import TypewriterLoading from "@/components/typewriter-loading";
 import { consumeTypewriterFrame } from "@/lib/typewriter";
 
@@ -236,7 +237,13 @@ export default function ChatShell(props: {
                       : "max-w-[85%] rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 py-3 text-[color:var(--text)] md:max-w-[72%]"
                   }
                 >
-                  <span>{message.content}</span>
+                  {message.role === "user" ? (
+                    <span>{message.content}</span>
+                  ) : (
+                    <div className="prose prose-sm max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:font-semibold prose-strong:text-[color:var(--text)] prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-headings:my-2 prose-headings:font-semibold">
+                      <ReactMarkdown>{message.content}</ReactMarkdown>
+                    </div>
+                  )}
                   {message.role === "assistant" && (isAwaitingFirstChunk || isAnimatingText) && index === messages.length - 1 ? (
                     <TypewriterLoading inline />
                   ) : null}

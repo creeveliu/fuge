@@ -1,7 +1,6 @@
 .next
 node_modules
 .env.local
-pnpm-lock.yaml
 .vercel
 .playwright-mcp
 .wrangler

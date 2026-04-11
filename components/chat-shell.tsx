@@ -6,9 +6,20 @@ import Link from "next/link";
 import TypewriterLoading from "@/components/typewriter-loading";
 import { consumeTypewriterFrame } from "@/lib/typewriter";
 
+const TOOL_NAME_MAP: Record<string, string> = {
+  web_search: "搜索网络",
+  web_fetch: "读取网页",
+};
+
 type Message = {
   role: "user" | "assistant";
   content: string;
+};
+
+type ToolCallStatus = {
+  name: string;
+  status: "calling" | "executing";
+  args?: Record<string, unknown>;
 };
 
 export default function ChatShell(props: {
@@ -23,6 +34,7 @@ export default function ChatShell(props: {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isAwaitingFirstChunk, setIsAwaitingFirstChunk] = useState(false);
+  const [toolCallStatus, setToolCallStatus] = useState<ToolCallStatus | null>(null);
   const isComposingRef = useRef(false);
   const queueRef = useRef("");
   const flushTimerRef = useRef<number | null>(null);
@@ -87,7 +99,7 @@ export default function ChatShell(props: {
     if (shouldAutoScrollRef.current) {
       viewport.scrollTop = viewport.scrollHeight;
     }
-  }, [messages, isAnimatingText, isAwaitingFirstChunk]);
+  }, [messages, isAnimatingText, isAwaitingFirstChunk, toolCallStatus]);
 
   function handleViewportScroll() {
     const viewport = messagesViewportRef.current;
@@ -109,6 +121,7 @@ export default function ChatShell(props: {
     setMessages([...nextMessages, { role: "assistant", content: "" }]);
     setInput("");
     setIsAwaitingFirstChunk(true);
+    setToolCallStatus(null);
 
     try {
       const response = await fetch("/api/chat", {
@@ -129,26 +142,78 @@ export default function ChatShell(props: {
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
-      let assistantText = "";
+      let buffer = "";
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
-        assistantText += decoder.decode(value, { stream: true });
-        queueRef.current += assistantText;
-        assistantText = "";
-        flushTypewriterQueue();
+        buffer += decoder.decode(value, { stream: true });
+
+        // 解析 SSE 事件 - 简化逻辑
+        const events = buffer.split("\n\n");
+        buffer = events.pop() || ""; // 保留最后一个未完成的事件
+
+        for (const eventStr of events) {
+          if (!eventStr.trim()) continue;
+
+          const eventMatch = eventStr.match(/^event: (\w+)\ndata: (.+)$/m);
+          if (!eventMatch) continue;
+
+          const eventType = eventMatch[1];
+          const dataStr = eventMatch[2];
+
+          try {
+            const data = JSON.parse(dataStr);
+
+            if (eventType === "tool_call") {
+              setToolCallStatus({
+                name: data.name,
+                status: "calling",
+                args: data.args,
+              });
+              // 停止 typewriter 并清空之前累积的"思考过程"文本
+              stopTypewriter();
+              queueRef.current = "";
+              setMessages((current) => {
+                if (current.length === 0) return current;
+                const updated = [...current];
+                const last = updated[updated.length - 1];
+                if (last?.role === "assistant") {
+                  updated[updated.length - 1] = {
+                    role: "assistant",
+                    content: "",
+                  };
+                }
+                return updated;
+              });
+            } else if (eventType === "tool_result") {
+              setToolCallStatus({
+                name: data.name,
+                status: "executing",
+              });
+            } else if (eventType === "content") {
+              setToolCallStatus(null);
+              if (data.text) {
+                queueRef.current += data.text;
+                flushTypewriterQueue();
+              }
+            }
+          } catch (e) {
+            console.error("Failed to parse SSE data:", dataStr);
+          }
+        }
       }
 
-      queueRef.current += decoder.decode();
       streamDoneRef.current = true;
       setIsAwaitingFirstChunk(false);
+      setToolCallStatus(null);
     } catch (error) {
       queueRef.current = "";
       streamDoneRef.current = true;
       stopTypewriter();
       setIsAwaitingFirstChunk(false);
+      setToolCallStatus(null);
       const errorMessage = error instanceof Error ? error.message : "出错了。";
       setMessages((current) => [
         ...current.slice(0, -1),
@@ -268,24 +333,39 @@ export default function ChatShell(props: {
                   className={
                     message.role === "user"
                       ? "ml-auto max-w-[85%] rounded-[1.5rem] bg-[color:var(--text)] px-4 py-3 text-[color:var(--panel)] md:max-w-[70%]"
-                      : "max-w-[85%] rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 py-3 text-[color:var(--text)] md:max-w-[72%]"
+                      : `max-w-[85%] rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 py-3 text-[color:var(--text)] md:max-w-[72%] ${
+                          index === messages.length - 1 && !message.content && (toolCallStatus || isAwaitingFirstChunk || isAnimatingText)
+                            ? "flex items-center min-h-[48px]"
+                            : ""
+                        }`
                   }
                 >
                   {message.role === "user" ? (
                     <span>{message.content}</span>
                   ) : (
-                    <div className="prose prose-sm max-w-none prose-p:inline prose-p:leading-relaxed prose-p:after:content-['\A'] prose-p:after:whitespace-pre prose-strong:font-semibold prose-strong:text-[color:var(--text)] prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-headings:my-2 prose-headings:font-semibold">
-                      <ReactMarkdown
-                        components={{
-                          p: ({ children }) => <span className="inline leading-relaxed">{children}</span>,
-                        }}
-                      >
-                        {message.content}
-                      </ReactMarkdown>
-                      {index === messages.length - 1 && (isAwaitingFirstChunk || isAnimatingText) && (
-                        <TypewriterLoading inline />
+                    <>
+                      <div className="prose prose-sm max-w-none prose-p:inline prose-p:leading-relaxed prose-p:after:content-['\A'] prose-p:after:whitespace-pre prose-strong:font-semibold prose-strong:text-[color:var(--text)] prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-headings:my-2 prose-headings:font-semibold">
+                        <ReactMarkdown
+                          components={{
+                            p: ({ children }) => <span className="inline leading-relaxed">{children}</span>,
+                          }}
+                        >
+                          {message.content}
+                        </ReactMarkdown>
+                        {index === messages.length - 1 && !toolCallStatus && (isAwaitingFirstChunk || isAnimatingText) && (
+                          <TypewriterLoading inline />
+                        )}
+                      </div>
+                      {index === messages.length - 1 && toolCallStatus && (
+                        <div className={`${message.content ? "mt-3 " : ""}flex items-center gap-2 text-sm text-[color:var(--muted)]`}>
+                          <span className="inline-block h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                          <span>{toolCallStatus.status === "calling"
+                            ? `正在${TOOL_NAME_MAP[toolCallStatus.name] || toolCallStatus.name}...`
+                            : `处理${TOOL_NAME_MAP[toolCallStatus.name] || toolCallStatus.name}结果...`}
+                          </span>
+                        </div>
                       )}
-                    </div>
+                    </>
                   )}
                 </article>
               ))

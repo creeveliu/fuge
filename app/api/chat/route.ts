@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { buildSystemPrompt } from "@/lib/chat";
 import { personas, type PersonaId } from "@/lib/personas";
-import { generateReplyStream } from "@/lib/model";
+import { streamAgentResponse } from "@/lib/agent";
+import { webSearchTool, webFetchTool } from "@/lib/tools";
 import { selectRetrievalContext } from "@/lib/retrieval";
 import { loadSkill } from "@/lib/skills";
 
@@ -22,6 +23,7 @@ export async function POST(request: Request) {
   }
 
   const skillText = await loadSkill(personaId);
+
   const lastUserMessage = [...(body.messages ?? [])]
     .reverse()
     .find((message) => message.role === "user");
@@ -30,20 +32,24 @@ export async function POST(request: Request) {
     : "";
   const systemPrompt = buildSystemPrompt({ skillText, extraContext });
 
+  const enableWebSearch = process.env.ENABLE_WEB_SEARCH === "true";
+  const tools = enableWebSearch
+    ? {
+        web_search: webSearchTool,
+        web_fetch: webFetchTool,
+      }
+    : undefined;
+
   try {
-    const stream = await generateReplyStream({
+    const response = await streamAgentResponse({
       systemPrompt,
       messages: body.messages ?? [],
+      tools,
     });
-
-    return new Response(stream, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store",
-      },
-    });
+    return response;
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Model request failed";
+    console.error("[route] Error:", error);
+    const message = error instanceof Error ? error.message : "Agent request failed";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

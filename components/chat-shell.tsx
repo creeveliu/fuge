@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import TypewriterLoading from "@/components/typewriter-loading";
 import { consumeTypewriterFrame } from "@/lib/typewriter";
@@ -34,7 +35,9 @@ export default function ChatShell(props: {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isAwaitingFirstChunk, setIsAwaitingFirstChunk] = useState(false);
-  const [toolCallStatus, setToolCallStatus] = useState<ToolCallStatus | null>(null);
+  const [toolCallStatus, setToolCallStatus] = useState<ToolCallStatus | null>(
+    null,
+  );
   const isComposingRef = useRef(false);
   const queueRef = useRef("");
   const flushTimerRef = useRef<number | null>(null);
@@ -104,7 +107,8 @@ export default function ChatShell(props: {
   function handleViewportScroll() {
     const viewport = messagesViewportRef.current;
     if (!viewport) return;
-    const isAtBottom = viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight < 50;
+    const isAtBottom =
+      viewport.scrollHeight - viewport.scrollTop - viewport.clientHeight < 50;
     shouldAutoScrollRef.current = isAtBottom;
   }
 
@@ -113,7 +117,10 @@ export default function ChatShell(props: {
     const trimmed = input.trim();
     if (!trimmed || isAwaitingFirstChunk || isAnimatingText) return;
 
-    const nextMessages = [...messages, { role: "user" as const, content: trimmed }];
+    const nextMessages = [
+      ...messages,
+      { role: "user" as const, content: trimmed },
+    ];
     queueRef.current = "";
     streamDoneRef.current = false;
     stopTypewriter();
@@ -245,8 +252,15 @@ export default function ChatShell(props: {
               className="absolute left-0 flex items-center justify-center w-6 h-6 text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
               aria-label="返回首页"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-                <path d="M10 4L6 8L10 12"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="w-4 h-4"
+              >
+                <path d="M10 4L6 8L10 12" />
               </svg>
             </Link>
             <p className="font-display text-sm uppercase tracking-[0.32em] text-[color:var(--muted)]">
@@ -291,12 +305,21 @@ export default function ChatShell(props: {
               className="flex items-center justify-center w-8 h-8 text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
               aria-label="返回首页"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-                <path d="M10 4L6 8L10 12"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="w-5 h-5"
+              >
+                <path d="M10 4L6 8L10 12" />
               </svg>
             </Link>
             <div>
-              <p className="font-display text-2xl tracking-[-0.04em]">{props.personaName}</p>
+              <p className="font-display text-2xl tracking-[-0.04em]">
+                {props.personaName}
+              </p>
               <p className="mt-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
                 Personai
               </p>
@@ -311,96 +334,113 @@ export default function ChatShell(props: {
             </div>
           </header>
 
-        <section className="surface min-h-0 flex-1 overflow-hidden rounded-[1.75rem]">
-          <div
-            ref={messagesViewportRef}
-            onScroll={handleViewportScroll}
-            className="flex h-full flex-col gap-4 overflow-y-auto px-5 py-5 md:px-8 md:py-8"
-          >
-            {messages.length === 0 ? (
-              <div className="my-auto max-w-xl">
-                <p className="font-display text-2xl tracking-[-0.05em]">
-                  提问示例
-                </p>
-                <p className="mt-3 text-base leading-7 text-[color:var(--muted)]">
-                  {props.exampleQuestions.join("、")}
-                </p>
-              </div>
-            ) : (
-              messages.map((message, index) => (
-                <article
-                  key={`${message.role}-${index}`}
-                  className={
-                    message.role === "user"
-                      ? "ml-auto max-w-[85%] rounded-[1.5rem] bg-[color:var(--text)] px-4 py-3 text-[color:var(--panel)] md:max-w-[70%]"
-                      : `max-w-[85%] rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 py-3 text-[color:var(--text)] md:max-w-[72%] ${
-                          index === messages.length - 1 && !message.content && (toolCallStatus || isAwaitingFirstChunk || isAnimatingText)
-                            ? "flex items-center min-h-[48px]"
-                            : ""
-                        }`
-                  }
-                >
-                  {message.role === "user" ? (
-                    <span>{message.content}</span>
-                  ) : (
-                    <>
-                      <div className="prose prose-sm max-w-none prose-p:inline prose-p:leading-relaxed prose-p:after:content-['\A'] prose-p:after:whitespace-pre prose-strong:font-semibold prose-strong:text-[color:var(--text)] prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-headings:my-2 prose-headings:font-semibold">
-                        <ReactMarkdown
-                          components={{
-                            p: ({ children }) => <span className="inline leading-relaxed">{children}</span>,
-                          }}
-                        >
-                          {message.content}
-                        </ReactMarkdown>
-                        {index === messages.length - 1 && !toolCallStatus && (isAwaitingFirstChunk || isAnimatingText) && (
-                          <TypewriterLoading inline />
-                        )}
-                      </div>
-                      {index === messages.length - 1 && toolCallStatus && (
-                        <div className={`${message.content ? "mt-3 " : ""}flex items-center gap-2 text-sm text-[color:var(--muted)]`}>
-                          <span className="inline-block h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                          <span>{toolCallStatus.status === "calling"
-                            ? `正在${TOOL_NAME_MAP[toolCallStatus.name] || toolCallStatus.name}...`
-                            : `处理${TOOL_NAME_MAP[toolCallStatus.name] || toolCallStatus.name}结果...`}
-                          </span>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </article>
-              ))
-            )}
-          </div>
-        </section>
-
-        <form className="surface rounded-[1.5rem] p-3 md:p-4" onSubmit={onSubmit}>
-          <div className="flex items-end gap-3">
-            <textarea
-              className="min-h-20 flex-1 resize-none rounded-[1.25rem] border border-[color:var(--line)] bg-white/70 px-4 py-3 text-[15px] outline-none transition focus:border-[color:var(--accent)]"
-              name="message"
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-              onCompositionStart={() => {
-                isComposingRef.current = true;
-              }}
-              onCompositionEnd={() => {
-                isComposingRef.current = false;
-              }}
-              onKeyDown={onComposerKeyDown}
-              placeholder={props.personaPlaceholder}
-            />
-            <button
-              className="rounded-[1.25rem] bg-[color:var(--text)] px-5 py-3 text-sm text-[color:var(--panel)] transition disabled:cursor-not-allowed disabled:opacity-45"
-              type="submit"
-              disabled={isSending}
+          <section className="surface min-h-0 flex-1 overflow-hidden rounded-[1.75rem]">
+            <div
+              ref={messagesViewportRef}
+              onScroll={handleViewportScroll}
+              className="flex h-full flex-col gap-4 overflow-y-auto px-5 py-5 md:px-8 md:py-8"
             >
-              {isSending ? "发送中" : "发送"}
-            </button>
-          </div>
-          <p className="mt-2 text-xs text-[color:var(--muted)]">
-            回车发送，Shift+回车换行
-          </p>
-        </form>
+              {messages.length === 0 ? (
+                <div className="my-auto max-w-xl">
+                  <p className="font-display text-2xl tracking-[-0.05em]">
+                    提问示例
+                  </p>
+                  <p className="mt-3 text-base leading-7 text-[color:var(--muted)]">
+                    {props.exampleQuestions.join("、")}
+                  </p>
+                </div>
+              ) : (
+                messages.map((message, index) => (
+                  <article
+                    key={`${message.role}-${index}`}
+                    className={
+                      message.role === "user"
+                        ? "ml-auto max-w-[85%] rounded-[1.5rem] bg-[color:var(--text)] px-4 py-3 text-[color:var(--panel)] md:max-w-[70%]"
+                        : `max-w-[85%] rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 py-3 text-[color:var(--text)] md:max-w-[72%] ${
+                            index === messages.length - 1 &&
+                            !message.content &&
+                            (toolCallStatus ||
+                              isAwaitingFirstChunk ||
+                              isAnimatingText)
+                              ? "flex items-center min-h-[48px]"
+                              : ""
+                          }`
+                    }
+                  >
+                    {message.role === "user" ? (
+                      <span>{message.content}</span>
+                    ) : (
+                      <>
+                        <div className="prose prose-sm max-w-none prose-p:inline prose-p:leading-relaxed prose-p:after:content-['\A'] prose-p:after:whitespace-pre prose-strong:font-semibold prose-strong:text-[color:var(--text)] prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-headings:my-2 prose-headings:font-semibold">
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                              p: ({ children }) => (
+                                <span className="inline leading-relaxed">
+                                  {children}
+                                </span>
+                              ),
+                            }}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                          {index === messages.length - 1 &&
+                            !toolCallStatus &&
+                            (isAwaitingFirstChunk || isAnimatingText) && (
+                              <TypewriterLoading inline />
+                            )}
+                        </div>
+                        {index === messages.length - 1 && toolCallStatus && (
+                          <div
+                            className={`${message.content ? "mt-3 " : ""}flex items-center gap-2 text-sm text-[color:var(--muted)]`}
+                          >
+                            <span className="inline-block h-4 w-4 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                            <span>
+                              {toolCallStatus.status === "calling"
+                                ? `正在${TOOL_NAME_MAP[toolCallStatus.name] || toolCallStatus.name}...`
+                                : `处理${TOOL_NAME_MAP[toolCallStatus.name] || toolCallStatus.name}结果...`}
+                            </span>
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </article>
+                ))
+              )}
+            </div>
+          </section>
+
+          <form
+            className="surface rounded-[1.5rem] p-3 md:p-4"
+            onSubmit={onSubmit}
+          >
+            <div className="flex items-end gap-3">
+              <textarea
+                className="min-h-20 flex-1 resize-none rounded-[1.25rem] border border-[color:var(--line)] bg-white/70 px-4 py-3 text-[15px] outline-none transition focus:border-[color:var(--accent)]"
+                name="message"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                onCompositionStart={() => {
+                  isComposingRef.current = true;
+                }}
+                onCompositionEnd={() => {
+                  isComposingRef.current = false;
+                }}
+                onKeyDown={onComposerKeyDown}
+                placeholder={props.personaPlaceholder}
+              />
+              <button
+                className="rounded-[1.25rem] bg-[color:var(--text)] px-5 py-3 text-sm text-[color:var(--panel)] transition disabled:cursor-not-allowed disabled:opacity-45"
+                type="submit"
+                disabled={isSending}
+              >
+                {isSending ? "发送中" : "发送"}
+              </button>
+            </div>
+            <p className="mt-2 text-xs text-[color:var(--muted)]">
+              回车发送，Shift+回车换行
+            </p>
+          </form>
         </div>
       </div>
     </main>

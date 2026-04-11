@@ -19,6 +19,7 @@ export default async function ChatPage({ params }: PageProps) {
       personaId={config.id}
       personaName={config.name}
       personaDescription={config.description}
+      personaPlaceholder={config.placeholder}
       readmeUrl={config.readmeUrl}
       wikiUrl={config.wikiUrl}
     />

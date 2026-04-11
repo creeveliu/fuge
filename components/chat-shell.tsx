@@ -14,6 +14,7 @@ export default function ChatShell(props: {
   personaId: string;
   personaName: string;
   personaDescription: string;
+  personaPlaceholder: string;
   readmeUrl: string;
   wikiUrl: string;
 }) {
@@ -189,7 +190,7 @@ export default function ChatShell(props: {
               target="_blank"
               rel="noreferrer"
             >
-              查看 Skill 来源
+              人物来源
               <span aria-hidden>↗</span>
             </a>
             <a
@@ -203,7 +204,7 @@ export default function ChatShell(props: {
             </a>
           </div>
           <p className="mt-auto rounded-2xl bg-[color:var(--accent-soft)] px-4 py-4 text-sm leading-6 text-[color:var(--muted)]">
-            基于公开资料提炼的对话型 Skill，不代表本人。
+            基于公开资料提炼的人格视角，不代表本人。
           </p>
         </aside>
 
@@ -280,7 +281,7 @@ export default function ChatShell(props: {
                 isComposingRef.current = false;
               }}
               onKeyDown={onComposerKeyDown}
-              placeholder="直接说事。"
+              placeholder={props.personaPlaceholder}
             />
             <button
               className="rounded-[1.25rem] bg-[color:var(--text)] px-5 py-3 text-sm text-[color:var(--panel)] transition disabled:cursor-not-allowed disabled:opacity-45"
@@ -290,6 +291,9 @@ export default function ChatShell(props: {
               {isSending ? "发送中" : "发送"}
             </button>
           </div>
+          <p className="mt-2 text-xs text-[color:var(--muted)]">
+            回车发送，Shift+回车换行
+          </p>
         </form>
         </div>
       </div>

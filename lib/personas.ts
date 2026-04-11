@@ -4,6 +4,7 @@ export type Persona = {
   id: PersonaId;
   name: string;
   description: string;
+  placeholder: string;
   repoUrl: string;
   rawSkillUrl: string;
   readmeUrl: string;
@@ -17,6 +18,7 @@ export const personas: Record<PersonaId, Persona> = {
     id: "fengge",
     name: "峰哥亡命天涯",
     description: "漂泊江湖的现实主义者，用黑色幽默点评世事。不装、不绕弯，看问题带着底层视角。",
+    placeholder: "兄弟，说吧，啥事儿？",
     repoUrl: "https://github.com/rottenpen/fengge-wangmingtianya-perspective",
     rawSkillUrl: "https://raw.githubusercontent.com/rottenpen/fengge-wangmingtianya-perspective/main/SKILL.md",
     readmeUrl: "https://github.com/rottenpen/fengge-wangmingtianya-perspective",
@@ -28,6 +30,7 @@ export const personas: Record<PersonaId, Persona> = {
     id: "huchenfeng",
     name: "户晨风",
     description: "消费现实主义创作者，用「购买力挑战」撕开消费主义的遮羞布。敢说实话，敢晒账单。",
+    placeholder: "多大岁数？什么学历？在哪个城市？",
     repoUrl: "https://github.com/Janlaywss/hu-chenfeng-skill",
     rawSkillUrl: "https://raw.githubusercontent.com/Janlaywss/hu-chenfeng-skill/main/SKILL.md",
     readmeUrl: "https://github.com/Janlaywss/hu-chenfeng-skill",
@@ -39,10 +42,11 @@ export const personas: Record<PersonaId, Persona> = {
     id: "zhangxuefeng",
     name: "张雪峰",
     description: "大学选专业的扛旗人，帮学生和家长闯过志愿填报这道坎。话糙理不糙，句句是干货。",
+    placeholder: "多少分？什么省？家里做什么的？",
     repoUrl: "https://github.com/alchaincyf/zhangxuefeng-skill",
     rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/zhangxuefeng-skill/main/SKILL.md",
     readmeUrl: "https://github.com/alchaincyf/zhangxuefeng-skill",
-    wikiUrl: "https://baike.baidu.com/search/word?word=%E5%BC%A0%E9%9B%AA%E5%B3%B0%20%E8%80%81%E5%B8%88",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E5%BC%A0%E9%9B%A8%E5%B3%B0%20%E8%80%81%E5%B8%88",
     mode: "skill-native",
     retrieval: "none"
   },
@@ -50,6 +54,7 @@ export const personas: Record<PersonaId, Persona> = {
     id: "guodegang",
     name: "郭德纲",
     description: "相声江湖的手艺人，用市井智慧讲人情世故。恩怨分明、规矩至上，观众笑了才算数。",
+    placeholder: "您猜怎么着？说给我听听...",
     repoUrl: "https://github.com/ByteRax/guodegang-skills",
     rawSkillUrl: "https://raw.githubusercontent.com/ByteRax/guodegang-skills/main/SKILL.md",
     readmeUrl: "https://github.com/ByteRax/guodegang-skills",
@@ -61,6 +66,7 @@ export const personas: Record<PersonaId, Persona> = {
     id: "tongjincheng",
     name: "童锦程",
     description: "深情祖师爷，用街头智慧讲恋爱与人性。真诚才是最高级的套路，说实话不喝鸡汤。",
+    placeholder: "兄弟们，说实话...",
     repoUrl: "https://github.com/hotcoffeeshake/tong-jincheng-skill",
     rawSkillUrl: "https://raw.githubusercontent.com/hotcoffeeshake/tong-jincheng-skill/main/SKILL.md",
     readmeUrl: "https://github.com/hotcoffeeshake/tong-jincheng-skill",
@@ -72,6 +78,7 @@ export const personas: Record<PersonaId, Persona> = {
     id: "buffett",
     name: "巴菲特",
     description: "奥马哈的先知，用价值投资的框架看世界。护城河、能力圈、复利滚雪球，耐心才是最大的本事。",
+    placeholder: "说说你的投资困惑...",
     repoUrl: "https://github.com/will2025btc/buffett-perspective",
     rawSkillUrl: "https://raw.githubusercontent.com/will2025btc/buffett-perspective/main/SKILL.md",
     readmeUrl: "https://github.com/will2025btc/buffett-perspective",

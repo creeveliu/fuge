@@ -9,14 +9,16 @@ describe("ChatShell", () => {
       <ChatShell
         personaId="fengge"
         personaName="峰哥"
+        personaDescription="测试描述"
+        personaPlaceholder="兄弟，说吧，啥事儿？"
         readmeUrl="https://github.com/example"
         wikiUrl="https://baike.baidu.com"
       />
     );
 
     expect(screen.getAllByText("峰哥").length).toBeGreaterThan(0);
-    expect(screen.getByText("查看 Skill 来源")).toBeInTheDocument();
-    expect(screen.getByText("基于公开资料提炼的对话型 Skill，不代表本人。")).toBeInTheDocument();
+    expect(screen.getByText("人物来源")).toBeInTheDocument();
+    expect(screen.getByText("基于公开资料提炼的人格视角，不代表本人。")).toBeInTheDocument();
   });
 
   it("submits on Enter and allows newline on Shift+Enter", async () => {
@@ -24,12 +26,14 @@ describe("ChatShell", () => {
       <ChatShell
         personaId="fengge"
         personaName="峰哥"
+        personaDescription="测试描述"
+        personaPlaceholder="兄弟，说吧，啥事儿？"
         readmeUrl="https://github.com/example"
         wikiUrl="https://baike.baidu.com"
       />
     );
 
-    const textarea = screen.getByPlaceholderText("直接说事。");
+    const textarea = screen.getByPlaceholderText("兄弟，说吧，啥事儿？");
 
     fireEvent.change(textarea, { target: { value: "第一行" } });
     fireEvent.keyDown(textarea, { key: "Enter", shiftKey: true });
@@ -48,12 +52,14 @@ describe("ChatShell", () => {
       <ChatShell
         personaId="fengge"
         personaName="峰哥"
+        personaDescription="测试描述"
+        personaPlaceholder="兄弟，说吧，啥事儿？"
         readmeUrl="https://github.com/example"
         wikiUrl="https://baike.baidu.com"
       />
     );
 
-    const textarea = screen.getByPlaceholderText("直接说事。");
+    const textarea = screen.getByPlaceholderText("兄弟，说吧，啥事儿？");
 
     fireEvent.change(textarea, { target: { value: "ni" } });
     fireEvent.compositionStart(textarea);

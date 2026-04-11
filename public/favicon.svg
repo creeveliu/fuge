@@ -1,0 +1,39 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 戏剧面具 - 更具细节 -->
+
+  <!-- 面具主体轮廓 -->
+  <path d="M16 3
+           C10 3 5 7 5 12
+           L5 18
+           C5 23 8 26 12 27
+           L12 30
+           C12 31 14 31 16 29
+           C18 31 20 31 20 30
+           L20 27
+           C24 26 27 23 27 18
+           L27 12
+           C27 7 22 3 16 3Z"
+        fill="#1e293b"/>
+
+  <!-- 面具边缘高光 -->
+  <path d="M16 4
+           C10.5 4 6 7.5 6 12
+           L6 18
+           C6 22.5 9 25.5 13 26.5"
+        stroke="#475569" stroke-width="1" fill="none"/>
+
+  <!-- 左眼孔 - 椭圆 -->
+  <ellipse cx="11" cy="13" rx="3" ry="2.5" fill="white"/>
+
+  <!-- 右眼孔 - 椭圆 -->
+  <ellipse cx="21" cy="13" rx="3" ry="2.5" fill="white"/>
+
+  <!-- 鼻梁 -->
+  <path d="M14 16 L16 19 L18 16" stroke="#475569" stroke-width="1.5" fill="none"/>
+
+  <!-- 嘴孔 - 张开的嘴 -->
+  <ellipse cx="16" cy="22" rx="4" ry="2.5" fill="white"/>
+
+  <!-- 嘴内部阴影 -->
+  <ellipse cx="16" cy="22.5" rx="3" ry="1.5" fill="#64748b"/>
+</svg>

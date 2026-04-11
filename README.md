@@ -4,22 +4,55 @@
 
 ## 功能
 
-- **六位人物**：峰哥、户晨风、张雪峰、郭德纲、童锦程、巴菲特
+- **21 位人格**：网红自媒体、企业家投资人、思想家学者、教育艺人
 - **原味风格保留**：每个回复都带着人物的语气和锋利
 - **流式回复**：打字机效果，实时呈现
 - **Markdown 支持**：加粗、列表、标题等格式完整渲染
 - **网页即开即用**：零门槛，打开即聊
+- **个性化引导**：每个人格有独特的输入框提示语
 
 ## 人物
+
+### 网红自媒体
 
 | 人物 | 简介 |
 |------|------|
 | **峰哥亡命天涯** | 漂泊江湖的现实主义者，用黑色幽默点评世事。不装、不绕弯，看问题带着底层视角。 |
 | **户晨风** | 消费现实主义创作者，用「购买力挑战」撕开消费主义的遮羞布。敢说实话，敢晒账单。 |
+| **童锦程** | 深情祖师爷，用街头智慧讲恋爱与人性。真诚才是最高级的套路，说实话不喝鸡汤。 |
+| **常熟阿诺** | 抽象文学创始人，左右脑互搏式辩论。「那我问你」零帧起手，把平凡事说出哲学感。 |
+| **MrBeast** | YouTube 顶流创作者，用流量思维、爆款公式、内容杠杆打造现象级视频。 |
+
+### 企业家投资人
+
+| 人物 | 简介 |
+|------|------|
+| **巴菲特** | 奥马哈的先知，用价值投资的框架看世界。护城河、能力圈、复利滚雪球。 |
+| **马斯克** | 第一性原理思考者，用物理学视角拆解成本结构、挑战行业假设。 |
+| **芒格** | 逆向思考大师，用认知偏误检查、Lollapalooza 效应审视决策。 |
+| **纳瓦尔** | 杠杆思维创始人，用特定知识、无需许可的路径重塑人生选择。 |
+| **保罗·格雷厄姆** | YC 创始人，用 essays 思维、黑客精神审视产品和人生选择。 |
+| **乔布斯** | 产品设计教父，用极简主义、用户体验、品味重塑科技产品。 |
+| **张一鸣** | 字节跳动创始人，用算法思维、延迟满足、组织效率重塑内容分发。 |
+| **特朗普** | 谈判与传播大师，用权力逻辑、锚定效应、情绪杠杆分析博弈。 |
+
+### 思想家学者
+
+| 人物 | 简介 |
+|------|------|
+| **马克思** | 结构分析方法论，识别矛盾、映射系统、找到杠杆点。 |
+| **米塞斯** | 人类行为学创始人，用经济计算、干预主义分析社会主义、价格管制。 |
+| **塔勒布** | 反脆弱之父，用黑天鹅、尾部风险、杠铃策略质疑主流叙事。 |
+| **齐泽克** | 哲学狙击手，把你自以为想清楚了的东西翻出你没意识到的那一层。 |
+| **费曼** | 诺贝尔物理学家，用「货物崇拜」检测伪理解。命名不等于理解。 |
+| **卡帕西** | AI 研究者视角，从神经网络、梯度下降到大规模训练。 |
+
+### 教育艺人
+
+| 人物 | 简介 |
+|------|------|
 | **张雪峰** | 大学选专业的扛旗人，帮学生和家长闯过志愿填报这道坎。话糙理不糙，句句是干货。 |
 | **郭德纲** | 相声江湖的手艺人，用市井智慧讲人情世故。恩怨分明、规矩至上，观众笑了才算数。 |
-| **童锦程** | 深情祖师爷，用街头智慧讲恋爱与人性。真诚才是最高级的套路，说实话不喝鸡汤。 |
-| **巴菲特** | 奥马哈的先知，用价值投资的框架看世界。护城河、能力圈、复利滚雪球，耐心才是最大的本事。 |
 
 ## 技术栈
 
@@ -59,11 +92,11 @@ pnpm test
 
 ```
 app/
-  page.tsx          # 首页：人物选择
+  page.tsx          # 首页：分类展示人物
   chat/[persona]/   # 聊天页面
   api/chat/         # 流式聊天 API
 lib/
-  personas.ts       # 人物注册表
+  personas.ts       # 人物注册表（21人 + 分类）
   skills.ts         # Skill 加载函数
   chat.ts           # 系统提示构建
   model.ts          # 模型调用
@@ -73,7 +106,7 @@ data/
   skills/           # Skill 文件（每个 persona 独立）
     fengge.md
     huchenfeng.md
-    zhangxuefeng.md
+    ...
   retrieval/        # 向量检索数据
 components/
   chat-shell.tsx    # 聊天界面
@@ -82,14 +115,7 @@ components/
 
 ## Skill 来源
 
-人物 Skill 来自 GitHub 仓库：
-
-- 峰哥：[rottenpen/fengge-wangmingtianya-perspective](https://github.com/rottenpen/fengge-wangmingtianya-perspective)
-- 户晨风：[Janlaywss/hu-chenfeng-skill](https://github.com/Janlaywss/hu-chenfeng-skill)
-- 张雪峰：[alchaincyf/zhangxuefeng-skill](https://github.com/alchaincyf/zhangxuefeng-skill)
-- 郭德纲：[ByteRax/guodegang-skills](https://github.com/ByteRax/guodegang-skills)
-- 童锦程：[hotcoffeeshake/tong-jincheng-skill](https://github.com/hotcoffeeshake/tong-jincheng-skill)
-- 巴菲特：[will2025btc/buffett-perspective](https://github.com/will2025btc/buffett-perspective)
+人物 Skill 来自 [awesome-persona-distill-skills](https://github.com/xixu-me/awesome-persona-distill-skills) 及各独立仓库。
 
 ## License
 

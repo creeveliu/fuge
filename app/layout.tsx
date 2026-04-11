@@ -15,8 +15,8 @@ const displayFont = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "Fuge",
-  description: "Skill-native chat MVP"
+  title: "Fuge - 人格模拟器",
+  description: "与提炼人格对话，选一个人物直接提问"
 };
 
 export default function RootLayout({

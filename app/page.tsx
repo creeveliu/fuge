@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { personas } from "@/lib/personas";
 
+// 提取简介中的关键词作为标签
+function extractTag(description: string): string {
+  // 从简介中提取核心关键词
+  const keywords = description.match(/。([^，。]+)/);
+  if (keywords) return keywords[1].slice(0, 12);
+  return description.slice(0, 15);
+}
+
 export default function HomePage() {
   return (
     <main className="min-h-screen px-5 py-5 md:px-8 md:py-8">
@@ -18,57 +26,33 @@ export default function HomePage() {
           </p>
         </header>
 
-        {/* Personas Grid - Card Style */}
+        {/* Personas Grid - Compact Tag Style */}
         <section className="pt-6 md:pt-8">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3">
             {Object.values(personas).map((persona) => (
               <Link
                 key={persona.id}
                 href={`/chat/${persona.id}`}
-                className="group relative flex flex-col rounded-xl border border-[color:var(--line)] bg-white/80 p-5 shadow-sm transition-all duration-200 hover:border-[color:var(--accent)] hover:shadow-md md:rounded-xl md:p-6"
+                className="group flex flex-col rounded-lg border border-[color:var(--line)] bg-white/90 px-4 py-3 transition-all duration-150 hover:border-[color:var(--accent)] hover:bg-white md:rounded-lg md:px-5 md:py-4"
               >
-                {/* Card accent line */}
-                <div className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[color:var(--line)] transition-colors group-hover:bg-[color:var(--accent)]" />
-
-                {/* Name - prominent */}
-                <h2 className="font-display text-xl font-medium tracking-[-0.02em] md:text-2xl">
+                {/* Name */}
+                <h2 className="font-display text-base font-medium tracking-[-0.01em] md:text-lg">
                   {persona.name}
                 </h2>
 
-                {/* Divider */}
-                <div className="mt-3 h-px w-full bg-[color:var(--line)]" />
-
-                {/* Description - subtle */}
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[color:var(--muted)]">
-                  {persona.description}
+                {/* Tag - subtle keyword */}
+                <p className="mt-1.5 text-xs text-[color:var(--muted)] md:mt-2 md:text-sm">
+                  {extractTag(persona.description)}
                 </p>
-
-                {/* Action hint */}
-                <div className="mt-4 flex items-center justify-end">
-                  <span className="inline-flex items-center gap-1.5 text-xs text-[color:var(--muted)] transition-colors group-hover:text-[color:var(--accent)]">
-                    开始对话
-                    <svg
-                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
               </Link>
             ))}
 
-            {/* Coming soon placeholder */}
-            <div className="relative flex flex-col rounded-xl border border-[color:var(--line)] bg-white/40 p-5 opacity-50 md:p-6">
-              <div className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[color:var(--line)]" />
-              <h2 className="font-display text-xl font-medium tracking-[-0.02em] text-[color:var(--muted)] md:text-2xl">
+            {/* Coming soon */}
+            <div className="flex flex-col rounded-lg border border-[color:var(--line)] bg-white/40 px-4 py-3 opacity-50 md:px-5 md:py-4">
+              <h2 className="font-display text-base font-medium tracking-[-0.01em] text-[color:var(--muted)] md:text-lg">
                 更多人物
               </h2>
-              <div className="mt-3 h-px w-full bg-[color:var(--line)]" />
-              <p className="mt-3 text-sm text-[color:var(--muted)]">
+              <p className="mt-1.5 text-xs text-[color:var(--muted)] md:mt-2 md:text-sm">
                 敬请期待
               </p>
             </div>
@@ -86,9 +70,6 @@ export default function HomePage() {
             </span>
             <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">
               网页即开即用
-            </span>
-            <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">
-              Markdown 渲染
             </span>
           </div>
         </footer>

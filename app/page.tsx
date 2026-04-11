@@ -18,34 +18,37 @@ export default function HomePage() {
           </p>
         </header>
 
-        {/* Personas Grid */}
+        {/* Personas Grid - Card Style */}
         <section className="pt-6 md:pt-8">
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5">
             {Object.values(personas).map((persona) => (
               <Link
                 key={persona.id}
                 href={`/chat/${persona.id}`}
-                className="surface group relative overflow-hidden rounded-xl p-4 transition-all duration-200 hover:border-[color:var(--accent)] hover:shadow-sm md:rounded-2xl md:p-5"
+                className="group relative flex flex-col rounded-xl border border-[color:var(--line)] bg-white/80 p-5 shadow-sm transition-all duration-200 hover:border-[color:var(--accent)] hover:shadow-md md:rounded-xl md:p-6"
               >
-                {/* Hover glow */}
-                <div className="pointer-events-none absolute -inset-1 rounded-xl bg-gradient-to-r from-transparent via-[color:var(--accent-soft)]/20 to-transparent opacity-0 blur transition-opacity group-hover:opacity-100" />
+                {/* Card accent line */}
+                <div className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[color:var(--line)] transition-colors group-hover:bg-[color:var(--accent)]" />
 
-                {/* Content */}
-                <div className="relative">
-                  <h2 className="font-display text-lg tracking-[-0.02em] md:text-xl">
-                    {persona.name}
-                  </h2>
-                  <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm md:leading-6">
-                    {persona.description}
-                  </p>
-                </div>
+                {/* Name - prominent */}
+                <h2 className="font-display text-xl font-medium tracking-[-0.02em] md:text-2xl">
+                  {persona.name}
+                </h2>
 
-                {/* Enter indicator */}
-                <div className="absolute bottom-3 right-3 md:bottom-4 md:right-4">
-                  <span className="inline-flex items-center gap-1 text-xs text-[color:var(--muted)] transition group-hover:text-[color:var(--accent)]">
-                    <span className="opacity-0 transition group-hover:opacity-100">开始</span>
+                {/* Divider */}
+                <div className="mt-3 h-px w-full bg-[color:var(--line)]" />
+
+                {/* Description - subtle */}
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[color:var(--muted)]">
+                  {persona.description}
+                </p>
+
+                {/* Action hint */}
+                <div className="mt-4 flex items-center justify-end">
+                  <span className="inline-flex items-center gap-1.5 text-xs text-[color:var(--muted)] transition-colors group-hover:text-[color:var(--accent)]">
+                    开始对话
                     <svg
-                      className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -59,11 +62,13 @@ export default function HomePage() {
             ))}
 
             {/* Coming soon placeholder */}
-            <div className="surface rounded-xl p-4 opacity-50 md:rounded-2xl md:p-5">
-              <p className="font-display text-lg tracking-[-0.02em] text-[color:var(--muted)] md:text-xl">
+            <div className="relative flex flex-col rounded-xl border border-[color:var(--line)] bg-white/40 p-5 opacity-50 md:p-6">
+              <div className="absolute left-0 top-0 h-full w-1 rounded-l-xl bg-[color:var(--line)]" />
+              <h2 className="font-display text-xl font-medium tracking-[-0.02em] text-[color:var(--muted)] md:text-2xl">
                 更多人物
-              </p>
-              <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm">
+              </h2>
+              <div className="mt-3 h-px w-full bg-[color:var(--line)]" />
+              <p className="mt-3 text-sm text-[color:var(--muted)]">
                 敬请期待
               </p>
             </div>

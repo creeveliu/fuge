@@ -175,7 +175,7 @@ export default function ChatShell(props: {
       <div className="mx-auto flex h-full max-w-6xl gap-4">
         <aside className="surface hidden w-[280px] shrink-0 rounded-[1.75rem] p-6 md:flex md:flex-col">
           <p className="font-display text-sm uppercase tracking-[0.32em] text-[color:var(--muted)]">
-            Fuge
+            Personai
           </p>
           <h1 className="font-display mt-6 text-4xl tracking-[-0.05em]">
             {props.personaName}
@@ -213,7 +213,7 @@ export default function ChatShell(props: {
             <div>
               <p className="font-display text-2xl tracking-[-0.04em]">{props.personaName}</p>
               <p className="mt-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
-                Fuge
+                Personai
               </p>
             </div>
             <div className="flex items-center gap-3 text-sm text-[color:var(--muted)]">

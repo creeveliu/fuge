@@ -51,7 +51,7 @@ export default function HomePage() {
         {/* Header */}
         <header className="border-b border-[color:var(--line)] pb-6">
           <p className="font-display text-sm uppercase tracking-[0.38em] text-[color:var(--muted)]">
-            Fuge
+            Personai
           </p>
           <h1 className="font-display mt-3 text-3xl leading-tight tracking-[-0.04em] md:text-5xl">
             人格模拟器

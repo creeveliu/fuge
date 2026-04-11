@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, Sora } from "next/font/google";
 import "./globals.css";
 
@@ -13,6 +13,13 @@ const displayFont = Sora({
   weight: ["500", "600", "700"],
   variable: "--font-display",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: "Personai - 人格模拟器",

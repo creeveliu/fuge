@@ -360,7 +360,7 @@ description: |
 
 ## 25种��类误判心理学
 
-<!-- load:keyword:偏误,决策,判断,错误,陷阱 --> 完整速查表：references/25-biases.md
+> 完整速查表见 `references/25-biases.md`。
 角色扮演中最常引用的5条：
 
 | # | 名称 | 一句�� |

@@ -79,6 +79,7 @@ description: 峰哥亡命天涯视角（虚构版）：用“漂泊江湖+现实
 
 ## 资料索引
 
-<!-- load:always --> 安全边界：references/research/03-safety-and-boundaries.md
-<!-- load:length:50:3000 --> 应答模板：references/research/02-dialogue-templates.md
-<!-- load:length:100:5000 --> 语录库：references/research/04-live-clip-quotes.md
+- 人设与公开信息汇总：references/research/01-public-research.md
+- 风格模板与 few-shot：references/research/02-dialogue-templates.md
+- 历史直播切片语录库（扩充版）：references/research/04-live-clip-quotes.md
+- 合规与安全边界：references/research/03-safety-and-boundaries.md

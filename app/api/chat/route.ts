@@ -3,7 +3,7 @@ import { buildSystemPrompt } from "@/lib/chat";
 import { personas, type PersonaId } from "@/lib/personas";
 import { generateReplyStream } from "@/lib/model";
 import { selectRetrievalContext } from "@/lib/retrieval";
-import { loadReferencesByNeed } from "@/lib/skills";
+import { loadSkill } from "@/lib/skills";
 
 type ChatRequest = {
   personaId?: string;
@@ -21,22 +21,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid personaId" }, { status: 400 });
   }
 
+  const skillText = await loadSkill(personaId);
   const lastUserMessage = [...(body.messages ?? [])]
     .reverse()
     .find((message) => message.role === "user");
-  const question = lastUserMessage?.content ?? "";
-
-  // 按需加载 skill 和 references
-  const { skillText, referencesText } = await loadReferencesByNeed(personaId, question);
   const extraContext = lastUserMessage
     ? await selectRetrievalContext(personaId, lastUserMessage.content)
     : "";
-
-  // 合并 skill + references + retrieval context
-  const systemPrompt = buildSystemPrompt({
-    skillText: skillText + referencesText,
-    extraContext,
-  });
+  const systemPrompt = buildSystemPrompt({ skillText, extraContext });
 
   try {
     const stream = await generateReplyStream({

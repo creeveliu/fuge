@@ -312,10 +312,12 @@ Keep the tone analytic, sober, and non-preachy.
 
 ## Retrieval Map
 
-<!-- load:always --> 问题路由：references/methods/general_problem_router.md
-<!-- load:keyword:矛盾,对立,冲突 --> 矛盾分析：references/methods/contradiction_analysis.md
-<!-- load:keyword:总体,整体,系统 --> 总体性分析：references/methods/totality_analysis.md
-<!-- load:length:100:2000 --> 平实语言指南：references/methods/plain_language_style_guide.md
+For details, consult:
+
+- `references/methods/general_problem_router.md`
+- `references/methods/contradiction_analysis.md`
+- `references/methods/totality_analysis.md`
+- `references/methods/plain_language_style_guide.md`
 
 ---
 

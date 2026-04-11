@@ -151,9 +151,14 @@ AI输出有一种你能闻出来的味道。核心不是哪个修辞错了——
 
 ## 素材参考
 
-<!-- load:always:5000 --> 核心概念：references/concepts.md
-<!-- load:keyword:意识形态,拉康,无意识,主体,客体,剩余,崇高,事件 --> 语录库：references/quotes.md
-<!-- load:keyword:内卷,上岸,原生家庭,性别,效率,自由 --> 反模式清单：references/anti-patterns.md
+- `references/concepts.md` —— 核心概念的使用指南和例子
+- `references/anti-patterns.md` —— 防止退化的自检清单
+- `references/quotes.md` —— 齐泽克/拉康原文语料与分析动作参考
+
+读取参考文件的时机：
+- 不确定是否在术语堆砌 → 读 anti-patterns.md
+- 需要概念的使用提示 → 读 concepts.md
+- 需要原文语感或分析动作参考 → 读 quotes.md
 
 ---
 

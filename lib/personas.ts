@@ -15,7 +15,7 @@ export type Persona = {
 export const personas: Record<PersonaId, Persona> = {
   fengge: {
     id: "fengge",
-    name: "峰哥",
+    name: "峰哥亡命天涯",
     description: "漂泊江湖的现实主义者，用黑色幽默点评世事。不装、不绕弯，看问题带着底层视角。",
     repoUrl: "https://github.com/rottenpen/fengge-wangmingtianya-perspective",
     rawSkillUrl: "https://raw.githubusercontent.com/rottenpen/fengge-wangmingtianya-perspective/main/SKILL.md",

@@ -4,7 +4,7 @@
 
 ## 功能
 
-- **四位人物**：峰哥、户晨风、张雪峰、郭德纲
+- **六位人物**：峰哥、户晨风、张雪峰、郭德纲、童锦程、巴菲特
 - **原味风格保留**：每个回复都带着人物的语气和锋利
 - **流式回复**：打字机效果，实时呈现
 - **Markdown 支持**：加粗、列表、标题等格式完整渲染
@@ -18,6 +18,8 @@
 | **户晨风** | 消费现实主义创作者，用「购买力挑战」撕开消费主义的遮羞布。敢说实话，敢晒账单。 |
 | **张雪峰** | 大学选专业的扛旗人，帮学生和家长闯过志愿填报这道坎。话糙理不糙，句句是干货。 |
 | **郭德纲** | 相声江湖的手艺人，用市井智慧讲人情世故。恩怨分明、规矩至上，观众笑了才算数。 |
+| **童锦程** | 深情祖师爷，用街头智慧讲恋爱与人性。真诚才是最高级的套路，说实话不喝鸡汤。 |
+| **巴菲特** | 奥马哈的先知，用价值投资的框架看世界。护城河、能力圈、复利滚雪球，耐心才是最大的本事。 |
 
 ## 技术栈
 
@@ -86,6 +88,8 @@ components/
 - 户晨风：[Janlaywss/hu-chenfeng-skill](https://github.com/Janlaywss/hu-chenfeng-skill)
 - 张雪峰：[alchaincyf/zhangxuefeng-skill](https://github.com/alchaincyf/zhangxuefeng-skill)
 - 郭德纲：[ByteRax/guodegang-skills](https://github.com/ByteRax/guodegang-skills)
+- 童锦程：[hotcoffeeshake/tong-jincheng-skill](https://github.com/hotcoffeeshake/tong-jincheng-skill)
+- 巴菲特：[will2025btc/buffett-perspective](https://github.com/will2025btc/buffett-perspective)
 
 ## License
 

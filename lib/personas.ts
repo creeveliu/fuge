@@ -1,4 +1,4 @@
-export type PersonaId = "fengge" | "huchenfeng" | "zhangxuefeng" | "guodegang";
+export type PersonaId = "fengge" | "huchenfeng" | "zhangxuefeng" | "guodegang" | "tongjincheng" | "buffett";
 
 export type Persona = {
   id: PersonaId;
@@ -54,6 +54,28 @@ export const personas: Record<PersonaId, Persona> = {
     rawSkillUrl: "https://raw.githubusercontent.com/ByteRax/guodegang-skills/main/SKILL.md",
     readmeUrl: "https://github.com/ByteRax/guodegang-skills",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E9%83%AD%E5%BE%B7%E7%BA%B2",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  tongjincheng: {
+    id: "tongjincheng",
+    name: "童锦程",
+    description: "深情祖师爷，用街头智慧讲恋爱与人性。真诚才是最高级的套路，说实话不喝鸡汤。",
+    repoUrl: "https://github.com/hotcoffeeshake/tong-jincheng-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/hotcoffeeshake/tong-jincheng-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/hotcoffeeshake/tong-jincheng-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E7%AB%A5%E9%94%A6%E7%A8%8B",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  buffett: {
+    id: "buffett",
+    name: "巴菲特",
+    description: "奥马哈的先知，用价值投资的框架看世界。护城河、能力圈、复利滚雪球，耐心才是最大的本事。",
+    repoUrl: "https://github.com/will2025btc/buffett-perspective",
+    rawSkillUrl: "https://raw.githubusercontent.com/will2025btc/buffett-perspective/main/SKILL.md",
+    readmeUrl: "https://github.com/will2025btc/buffett-perspective",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E6%B2%83%E4%BC%A6%C2%B7%E5%B7%B4%E8%8F%B2%E7%89%B9",
     mode: "skill-native",
     retrieval: "none"
   }

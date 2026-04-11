@@ -49,7 +49,18 @@ async function requestModel(args: {
   });
 
   if (!response.ok) {
-    throw new Error(`Model request failed with status ${response.status}`);
+    let errorMessage = `Model request failed with status ${response.status}`;
+    try {
+      const errorBody = await response.json();
+      if (typeof errorBody.error === "string") {
+        errorMessage = errorBody.error;
+      } else if (errorBody.error?.message) {
+        errorMessage = errorBody.error.message;
+      }
+    } catch {
+      // ignore JSON parse errors
+    }
+    throw new Error(errorMessage);
   }
 
   return response;

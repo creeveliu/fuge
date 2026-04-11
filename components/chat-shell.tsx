@@ -144,14 +144,15 @@ export default function ChatShell(props: {
       queueRef.current += decoder.decode();
       streamDoneRef.current = true;
       setIsAwaitingFirstChunk(false);
-    } catch {
+    } catch (error) {
       queueRef.current = "";
       streamDoneRef.current = true;
       stopTypewriter();
       setIsAwaitingFirstChunk(false);
+      const errorMessage = error instanceof Error ? error.message : "出错了。";
       setMessages((current) => [
         ...current.slice(0, -1),
-        { role: "assistant", content: "出错了。" },
+        { role: "assistant", content: errorMessage },
       ]);
     }
   }

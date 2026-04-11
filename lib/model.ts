@@ -14,7 +14,8 @@ function createPayload(args: {
   messages: Array<{ role: "user" | "assistant"; content: string }>;
   stream?: boolean;
 }) {
-  const model = (process.env.MODEL_NAME ?? "gpt-4o-mini").trim();
+  const model = process.env.MODEL_NAME?.trim();
+  if (!model) throw new Error("MODEL_NAME is required");
 
   return {
     model,
@@ -33,7 +34,8 @@ async function requestModel(args: {
   stream?: boolean;
 }) {
   const apiKey = process.env.MODEL_API_KEY?.trim();
-  const baseUrl = (process.env.MODEL_BASE_URL ?? "https://api.openai.com/v1").trim();
+  const baseUrl = process.env.MODEL_BASE_URL?.trim();
+  if (!baseUrl) throw new Error("MODEL_BASE_URL is required");
 
   assertModelEnv(apiKey);
 

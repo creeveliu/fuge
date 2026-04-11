@@ -8,6 +8,6 @@ import { type PersonaId } from "@/lib/personas";
  * @returns Skill 文本的完整内容
  */
 export async function loadSkill(personaId: PersonaId): Promise<string> {
-  const filePath = join(process.cwd(), "data", "skills", `${personaId}.md`);
+  const filePath = join(process.cwd(), "data", "skills", personaId, "SKILL.md");
   return readFile(filePath, "utf-8");
 }

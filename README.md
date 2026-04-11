@@ -103,9 +103,14 @@ lib/
   retrieval.ts      # 户晨风向量检索
   typewriter.ts     # 打字机效果
 data/
-  skills/           # Skill 文件（每个 persona 独立）
-    fengge.md
-    huchenfeng.md
+  skills/           # Skill 文件（每个 persona 独立文件夹）
+    fengge/
+      SKILL.md
+      references/
+        research/
+          ...
+    huchenfeng/
+      SKILL.md
     ...
   retrieval/        # 向量检索数据
 components/

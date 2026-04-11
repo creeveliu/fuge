@@ -46,9 +46,8 @@ const categories: Array<{
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen px-5 py-5 md:px-8 md:py-8">
-      <div className="mx-auto max-w-6xl rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--panel)]/85 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] backdrop-blur md:p-8">
-        {/* Header */}
+    <main className="min-h-screen mx-auto max-w-6xl px-5 py-5 md:px-8 md:py-8">
+      {/* Header */}
         <header className="border-b border-[color:var(--line)] pb-6">
           <p className="font-display text-sm uppercase tracking-[0.38em] text-[color:var(--muted)]">
             Personai
@@ -103,7 +102,6 @@ export default function HomePage() {
             更多人格，敬请期待
           </p>
         </footer>
-      </div>
     </main>
   );
 }

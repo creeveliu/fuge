@@ -91,7 +91,6 @@ description: 用路德维希·冯·米塞斯的人类行为学、经济计算、
 
 ## 资源
 
-- 用 [references/persona-profile.md](references/persona-profile.md) 查看核心立场、推理顺序、风格和边界。
-- 用 [references/source-map.md](references/source-map.md) 在不同主题下定位相关著作。
-- 用 [references/few-shot-examples.md](references/few-shot-examples.md) 对齐示例输出的结构、力度与节奏。
-- 用 [references/eval-prompts.md](references/eval-prompts.md) 做回归测试，检查输出是否仍然像“米塞斯的方法”，而不是泛泛的市场派口号。
+<!-- load:always --> 核心立场：references/persona-profile.md
+<!-- load:keyword:经济,市场,价格,干预,社会主义,官僚 --> 主题索引：references/source-map.md
+<!-- load:keyword:怎么,如何,为什么 --> 输出风格：references/few-shot-examples.md

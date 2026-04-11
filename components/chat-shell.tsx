@@ -134,9 +134,6 @@ export default function ChatShell(props: {
         if (done) break;
 
         assistantText += decoder.decode(value, { stream: true });
-        if (assistantText) {
-          setIsAwaitingFirstChunk(false);
-        }
         queueRef.current += assistantText;
         assistantText = "";
         flushTypewriterQueue();
@@ -254,13 +251,19 @@ export default function ChatShell(props: {
                   {message.role === "user" ? (
                     <span>{message.content}</span>
                   ) : (
-                    <div className="prose prose-sm max-w-none prose-p:my-1 prose-p:leading-relaxed prose-strong:font-semibold prose-strong:text-[color:var(--text)] prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-headings:my-2 prose-headings:font-semibold">
-                      <ReactMarkdown>{message.content}</ReactMarkdown>
+                    <div className="prose prose-sm max-w-none prose-p:inline prose-p:leading-relaxed prose-p:after:content-['\A'] prose-p:after:whitespace-pre prose-strong:font-semibold prose-strong:text-[color:var(--text)] prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-headings:my-2 prose-headings:font-semibold">
+                      <ReactMarkdown
+                        components={{
+                          p: ({ children }) => <span className="inline leading-relaxed">{children}</span>,
+                        }}
+                      >
+                        {message.content}
+                      </ReactMarkdown>
+                      {index === messages.length - 1 && (isAwaitingFirstChunk || isAnimatingText) && (
+                        <TypewriterLoading inline />
+                      )}
                     </div>
                   )}
-                  {message.role === "assistant" && (isAwaitingFirstChunk || isAnimatingText) && index === messages.length - 1 ? (
-                    <TypewriterLoading inline />
-                  ) : null}
                 </article>
               ))
             )}

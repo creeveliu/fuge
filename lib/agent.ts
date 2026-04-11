@@ -5,9 +5,10 @@ import { stepCountIs } from 'ai';
 
 // 创建 GLM provider（OpenAI-compatible）
 // 使用 .chat() 方法强制使用 chat/completions 端点（MaaS 不支持 Responses API）
+// trim() 处理环境变量可能的换行符问题
 const glm = createOpenAI({
-  baseURL: process.env.MODEL_BASE_URL!,
-  apiKey: process.env.MODEL_API_KEY!,
+  baseURL: process.env.MODEL_BASE_URL?.trim()!,
+  apiKey: process.env.MODEL_API_KEY?.trim()!,
 });
 
 /**
@@ -29,7 +30,7 @@ export async function streamAgentResponse(args: {
 
   try {
     const result = streamText({
-      model: glm.chat(process.env.MODEL_NAME!),
+      model: glm.chat(process.env.MODEL_NAME?.trim()!),
       system: args.systemPrompt,
       messages: args.messages,
       tools: args.tools,

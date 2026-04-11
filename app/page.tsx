@@ -1,14 +1,6 @@
 import Link from "next/link";
 import { personas } from "@/lib/personas";
 
-// 提取简介中的关键词作为标签
-function extractTag(description: string): string {
-  // 从简介中提取核心关键词
-  const keywords = description.match(/。([^，。]+)/);
-  if (keywords) return keywords[1].slice(0, 12);
-  return description.slice(0, 15);
-}
-
 export default function HomePage() {
   return (
     <main className="min-h-screen px-5 py-5 md:px-8 md:py-8">
@@ -26,33 +18,33 @@ export default function HomePage() {
           </p>
         </header>
 
-        {/* Personas Grid - Compact Tag Style */}
+        {/* Personas Grid */}
         <section className="pt-6 md:pt-8">
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
             {Object.values(personas).map((persona) => (
               <Link
                 key={persona.id}
                 href={`/chat/${persona.id}`}
-                className="group flex flex-col rounded-lg border border-[color:var(--line)] bg-white/90 px-4 py-3 transition-all duration-150 hover:border-[color:var(--accent)] hover:bg-white md:rounded-lg md:px-5 md:py-4"
+                className="surface group rounded-xl p-4 transition-all duration-200 hover:border-[color:var(--accent)] hover:shadow-sm md:rounded-xl md:p-5"
               >
                 {/* Name */}
-                <h2 className="font-display text-base font-medium tracking-[-0.01em] md:text-lg">
+                <h2 className="font-display text-lg tracking-[-0.02em] md:text-xl">
                   {persona.name}
                 </h2>
 
-                {/* Tag - subtle keyword */}
-                <p className="mt-1.5 text-xs text-[color:var(--muted)] md:mt-2 md:text-sm">
-                  {extractTag(persona.description)}
+                {/* Full description */}
+                <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm md:leading-6">
+                  {persona.description}
                 </p>
               </Link>
             ))}
 
             {/* Coming soon */}
-            <div className="flex flex-col rounded-lg border border-[color:var(--line)] bg-white/40 px-4 py-3 opacity-50 md:px-5 md:py-4">
-              <h2 className="font-display text-base font-medium tracking-[-0.01em] text-[color:var(--muted)] md:text-lg">
+            <div className="surface rounded-xl p-4 opacity-50 md:p-5">
+              <p className="font-display text-lg tracking-[-0.02em] text-[color:var(--muted)] md:text-xl">
                 更多人物
-              </h2>
-              <p className="mt-1.5 text-xs text-[color:var(--muted)] md:mt-2 md:text-sm">
+              </p>
+              <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm">
                 敬请期待
               </p>
             </div>

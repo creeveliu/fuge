@@ -11,6 +11,7 @@ describe("ChatShell", () => {
         personaName="峰哥"
         personaDescription="测试描述"
         personaPlaceholder="兄弟，说吧，啥事儿？"
+        exampleQuestions={["问题一", "问题二", "问题三"]}
         readmeUrl="https://github.com/example"
         wikiUrl="https://baike.baidu.com"
       />
@@ -28,6 +29,7 @@ describe("ChatShell", () => {
         personaName="峰哥"
         personaDescription="测试描述"
         personaPlaceholder="兄弟，说吧，啥事儿？"
+        exampleQuestions={["问题一", "问题二", "问题三"]}
         readmeUrl="https://github.com/example"
         wikiUrl="https://baike.baidu.com"
       />
@@ -54,6 +56,7 @@ describe("ChatShell", () => {
         personaName="峰哥"
         personaDescription="测试描述"
         personaPlaceholder="兄弟，说吧，啥事儿？"
+        exampleQuestions={["问题一", "问题二", "问题三"]}
         readmeUrl="https://github.com/example"
         wikiUrl="https://baike.baidu.com"
       />

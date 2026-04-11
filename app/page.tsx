@@ -43,18 +43,8 @@ export default function HomePage() {
 
         {/* Footer */}
         <footer className="mt-6 border-t border-[color:var(--line)] pt-5 md:mt-8 md:pt-6">
-          {/* Features */}
-          <div className="flex flex-wrap gap-2 text-xs text-[color:var(--muted)] md:gap-3 md:text-sm">
-            <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">
-              流式回复
-            </span>
-            <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">
-              网页即开即用
-            </span>
-          </div>
-
           {/* Coming soon */}
-          <p className="mt-4 text-xs text-[color:var(--muted)] md:text-sm">
+          <p className="text-xs text-[color:var(--muted)] md:text-sm">
             更多人物，敬请期待
           </p>
         </footer>

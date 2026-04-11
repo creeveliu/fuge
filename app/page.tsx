@@ -38,21 +38,12 @@ export default function HomePage() {
                 </p>
               </Link>
             ))}
-
-            {/* Coming soon */}
-            <div className="surface rounded-xl p-4 opacity-50 md:p-5">
-              <p className="font-display text-lg tracking-[-0.02em] text-[color:var(--muted)] md:text-xl">
-                更多人物
-              </p>
-              <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm">
-                敬请期待
-              </p>
-            </div>
           </div>
         </section>
 
-        {/* Footer features */}
+        {/* Footer */}
         <footer className="mt-6 border-t border-[color:var(--line)] pt-5 md:mt-8 md:pt-6">
+          {/* Features */}
           <div className="flex flex-wrap gap-2 text-xs text-[color:var(--muted)] md:gap-3 md:text-sm">
             <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">
               原味风格保留
@@ -64,6 +55,11 @@ export default function HomePage() {
               网页即开即用
             </span>
           </div>
+
+          {/* Coming soon */}
+          <p className="mt-4 text-xs text-[color:var(--muted)] md:text-sm">
+            更多人物，敬请期待
+          </p>
         </footer>
       </div>
     </main>

@@ -173,13 +173,15 @@ export default function ChatShell(props: {
     <main className="h-screen overflow-hidden px-4 py-4 md:px-5 md:py-5">
       <div className="mx-auto flex h-full max-w-6xl gap-4">
         <aside className="surface hidden w-[280px] shrink-0 rounded-[1.75rem] p-6 md:flex md:flex-col">
-          <div className="flex items-center justify-between">
+          <div className="relative flex items-center justify-center">
             <Link
               href="/"
-              className="text-sm text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
+              className="absolute left-0 flex items-center justify-center w-6 h-6 text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
               aria-label="返回首页"
             >
-              ←
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                <path d="M10 4L6 8L10 12"/>
+              </svg>
             </Link>
             <p className="font-display text-sm uppercase tracking-[0.32em] text-[color:var(--muted)]">
               Personai
@@ -220,10 +222,12 @@ export default function ChatShell(props: {
           <header className="surface flex flex-wrap items-center justify-between gap-4 rounded-[1.5rem] px-5 py-4 md:hidden">
             <Link
               href="/"
-              className="text-base text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
+              className="flex items-center justify-center w-8 h-8 text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
               aria-label="返回首页"
             >
-              ←
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+                <path d="M10 4L6 8L10 12"/>
+              </svg>
             </Link>
             <div>
               <p className="font-display text-2xl tracking-[-0.04em]">{props.personaName}</p>

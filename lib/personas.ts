@@ -190,7 +190,7 @@ export const personas: Record<PersonaId, Persona> = {
     repoUrl: "https://github.com/LijiayuDeng/mises-perspective",
     rawSkillUrl: "https://raw.githubusercontent.com/LijiayuDeng/mises-perspective/main/SKILL.md",
     readmeUrl: "https://github.com/LijiayuDeng/mises-perspective",
-    wikiUrl: "https://baike.baidu.com/search/word?word=%E7%B1%B3%E5%AF%9E%E6%96%AF",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E7%B1%B3%E5%A1%9E%E6%96%AF",
     mode: "skill-native",
     retrieval: "none",
     exampleQuestions: ['价格管制的后果是什么？', '为什么经济计算在计划经济里不可能？', '利润到底起什么作用？']

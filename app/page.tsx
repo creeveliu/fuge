@@ -1,8 +1,12 @@
 import Link from "next/link";
-import { personas } from "@/lib/personas";
+import { personas, PersonaId } from "@/lib/personas";
 
 // 人物分类
-const categories = [
+const categories: Array<{
+  id: string;
+  name: string;
+  personas: PersonaId[];
+}> = [
   {
     id: "creator",
     name: "网红自媒体",

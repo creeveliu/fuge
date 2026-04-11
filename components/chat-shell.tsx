@@ -15,6 +15,7 @@ export default function ChatShell(props: {
   personaName: string;
   personaDescription: string;
   personaPlaceholder: string;
+  exampleQuestions: string[];
   readmeUrl: string;
   wikiUrl: string;
 }) {
@@ -178,7 +179,7 @@ export default function ChatShell(props: {
             {props.personaName}
           </h1>
           <p className="mt-4 text-sm leading-6 text-[color:var(--muted)]">
-            直接对话，不做解释，不做教程。只保留人物自己的思考节奏。
+            {props.personaDescription}
           </p>
           <div className="mt-8 space-y-3 text-sm">
             <a
@@ -231,11 +232,11 @@ export default function ChatShell(props: {
           >
             {messages.length === 0 ? (
               <div className="my-auto max-w-xl">
-                <p className="font-display text-4xl tracking-[-0.05em] md:text-5xl">
-                  直接问。
+                <p className="font-display text-2xl tracking-[-0.05em]">
+                  提问示例
                 </p>
-                <p className="mt-4 text-base leading-8 text-[color:var(--muted)]">
-                  {props.personaDescription}
+                <p className="mt-3 text-base leading-7 text-[color:var(--muted)]">
+                  {props.exampleQuestions.join("、")}
                 </p>
               </div>
             ) : (

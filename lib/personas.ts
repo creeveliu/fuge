@@ -32,6 +32,7 @@ export type Persona = {
   wikiUrl: string;
   mode: "skill-native";
   retrieval: "none" | "vector";
+  exampleQuestions: string[];
 };
 
 export const personas: Record<PersonaId, Persona> = {
@@ -46,7 +47,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/rottenpen/fengge-wangmingtianya-perspective",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E5%B3%B0%E5%93%A5%E4%BA%A1%E5%91%BD%E5%A4%A9%E6%B6%AF",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['年轻人该怎么闯？', '工资三千房租两千，怎么活？', '该不该回老家？']
   },
   huchenfeng: {
     id: "huchenfeng",
@@ -58,7 +60,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/Janlaywss/hu-chenfeng-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E6%88%B7%E6%99%A8%E9%A3%8E",
     mode: "skill-native",
-    retrieval: "vector"
+    retrieval: "vector",
+    exampleQuestions: ['月入五千能存钱吗？', '年轻人该买房吗？', '消费主义陷阱怎么识别？']
   },
   zhangxuefeng: {
     id: "zhangxuefeng",
@@ -70,7 +73,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/zhangxuefeng-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E5%BC%A0%E9%9B%A8%E5%B3%B0%20%E8%80%81%E5%B8%88",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['五百多分报什么专业？', '文科生有什么出路？', '土木还能报吗？']
   },
   guodegang: {
     id: "guodegang",
@@ -82,7 +86,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/ByteRax/guodegang-skills",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E9%83%AD%E5%BE%B7%E7%BA%B2",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这事儿怎么圆过去？', '规矩到底是什么？', '人情世故怎么拿捏？']
   },
   tongjincheng: {
     id: "tongjincheng",
@@ -94,7 +99,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/hotcoffeeshake/tong-jincheng-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E7%AB%A5%E9%94%A6%E7%A8%8B",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['女生不回消息怎么办？', '怎么判断她是不是真的喜欢你？', '表白还是不表白？']
   },
   buffett: {
     id: "buffett",
@@ -106,7 +112,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/will2025btc/buffett-perspective",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E6%B2%83%E4%BC%A6%C2%B7%E5%B7%B4%E8%8F%B2%E7%89%B9",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这公司有护城河吗？', '什么时候该卖出？', '怎么看懂一家公司？']
   },
 
   // 新增人物
@@ -120,7 +127,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/Ricardo-Vv/changshu-anuo",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E5%B8%B8%E5%9D%8E%E9%98%BF%E8%AF%BA",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['那我问你，这事儿公平吗？', '你觉得这合理吗？', '凭什么不行？']
   },
   musk: {
     id: "musk",
@@ -132,7 +140,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/elon-musk-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E9%9B%8C%E6%96%AF%E5%85%8B",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这东西的白痴指数是多少？', '从物理学角度这成本能降多少？', '第一性原理怎么看这个问题？']
   },
   feynman: {
     id: "feynman",
@@ -144,7 +153,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/feynman-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E8%B4%B9%E6%9B%BC",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['你能用简单话解释这个概念吗？', '如果没术语，你怎么教这个？', '货物崇拜是什么意思？']
   },
   marx: {
     id: "marx",
@@ -156,7 +166,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/baojiachen0214/karlmarx-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E9%9A%A8%E5%85%8B%E6%80%9D",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这问题的根本矛盾是什么？', '谁是受益者，谁是代价？', '结构在哪出了问题？']
   },
   karpathy: {
     id: "karpathy",
@@ -168,7 +179,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/karpathy-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=Andrej%20Karpathy",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['神经网络到底在学什么？', '为什么 SGD 能工作？', '大模型和小模型的本质区别是什么？']
   },
   mises: {
     id: "mises",
@@ -180,7 +192,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/LijiayuDeng/mises-perspective",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E7%B1%B3%E5%AF%9E%E6%96%AF",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['价格管制的后果是什么？', '为什么经济计算在计划经济里不可能？', '利润到底起什么作用？']
   },
   mrbeast: {
     id: "mrbeast",
@@ -192,7 +205,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/mrbeast-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=MrBeast",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这视频的前五秒够炸吗？', '为什么这个内容能病毒传播？', '预算该砸在哪个环节？']
   },
   munger: {
     id: "munger",
@@ -204,7 +218,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/munger-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E6%9F%A0%E6%9F%A5%E8%8C%AF%E6%A0%BC",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这决策最可能怎么失败？', '有什么认知偏误在影响我？', '反过来想，怎么才能成功？']
   },
   naval: {
     id: "naval",
@@ -216,7 +231,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/naval-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=Naval%20Ravikant",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这事儿有杠杆吗？', '我的特定知识是什么？', '财富和赚钱的区别是什么？']
   },
   graham: {
     id: "graham",
@@ -228,7 +244,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/paul-graham-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=Paul%20Graham",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这个想法值得写篇 essay 吗？', '程序员思维怎么解这问题？', '这创业方向有独立想法吗？']
   },
   jobs: {
     id: "jobs",
@@ -240,7 +257,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/steve-jobs-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E5%A9%86%E5%B8%83%E6%96%AF",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这个产品能再删掉什么？', '用户真正想要的是什么？', '品味在这里体现在哪？']
   },
   taleb: {
     id: "taleb",
@@ -252,7 +270,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/taleb-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E6%A4%A0%E5%8B%87%E8%94%A1",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这有尾部风险吗？', '平均深度四英尺的河能淹死谁？', '杠铃策略怎么用？']
   },
   trump: {
     id: "trump",
@@ -264,7 +283,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/trump-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E7%9C%E6%87%9E%E5%9C%BA",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这个谈判怎么锚定？', '怎么用情绪杠杆？', '让对手先开口还是我先开口？']
   },
   zhangyiming: {
     id: "zhangyiming",
@@ -276,7 +296,8 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/alchaincyf/zhang-yiming-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E5%BC%A0%E4%B8%80%E9%A3%9E",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['这决策有延迟满足的价值吗？', 'Context not Control 怎么落地？', '怎么用算法思维优化组织？']
   },
   zizek: {
     id: "zizek",
@@ -288,6 +309,7 @@ export const personas: Record<PersonaId, Persona> = {
     readmeUrl: "https://github.com/JikunR/zizek-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E9%9B%81%E6%B8%8C%E5%85%8B",
     mode: "skill-native",
-    retrieval: "none"
+    retrieval: "none",
+    exampleQuestions: ['你以为你懂了，真的吗？', '这背后还有什么没说出来的？', '意识形态怎么在这起作用？']
   }
 };

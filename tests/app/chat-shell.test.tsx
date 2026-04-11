@@ -17,7 +17,7 @@ describe("ChatShell", () => {
     );
 
     expect(screen.getAllByText("峰哥").length).toBeGreaterThan(0);
-    expect(screen.getByText("人物来源")).toBeInTheDocument();
+    expect(screen.getByText("人格来源")).toBeInTheDocument();
     expect(screen.getByText("基于公开资料提炼的人格视角，不代表本人。")).toBeInTheDocument();
   });
 

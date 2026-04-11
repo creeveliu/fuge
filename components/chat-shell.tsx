@@ -190,7 +190,7 @@ export default function ChatShell(props: {
               target="_blank"
               rel="noreferrer"
             >
-              人物来源
+              人格来源
               <span aria-hidden>↗</span>
             </a>
             <a

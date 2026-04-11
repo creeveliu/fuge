@@ -1,4 +1,25 @@
-export type PersonaId = "fengge" | "huchenfeng" | "zhangxuefeng" | "guodegang" | "tongjincheng" | "buffett";
+export type PersonaId =
+  | "fengge"
+  | "huchenfeng"
+  | "zhangxuefeng"
+  | "guodegang"
+  | "tongjincheng"
+  | "buffett"
+  | "changshuanuo"
+  | "musk"
+  | "feynman"
+  | "marx"
+  | "karpathy"
+  | "mises"
+  | "mrbeast"
+  | "munger"
+  | "naval"
+  | "graham"
+  | "jobs"
+  | "taleb"
+  | "trump"
+  | "zhangyiming"
+  | "zizek";
 
 export type Persona = {
   id: PersonaId;
@@ -14,6 +35,7 @@ export type Persona = {
 };
 
 export const personas: Record<PersonaId, Persona> = {
+  // 已有人物
   fengge: {
     id: "fengge",
     name: "峰哥亡命天涯",
@@ -83,6 +105,188 @@ export const personas: Record<PersonaId, Persona> = {
     rawSkillUrl: "https://raw.githubusercontent.com/will2025btc/buffett-perspective/main/SKILL.md",
     readmeUrl: "https://github.com/will2025btc/buffett-perspective",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E6%B2%83%E4%BC%A6%C2%B7%E5%B7%B4%E8%8F%B2%E7%89%B9",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+
+  // 新增人物
+  changshuanuo: {
+    id: "changshuanuo",
+    name: "常熟阿诺",
+    description: "抽象文学创始人，左右脑互搏式辩论。「那我问你」零帧起手，把平凡事说出哲学感。",
+    placeholder: "那我问你...",
+    repoUrl: "https://github.com/Ricardo-Vv/changshu-anuo",
+    rawSkillUrl: "https://raw.githubusercontent.com/Ricardo-Vv/changshu-anuo/main/SKILL.md",
+    readmeUrl: "https://github.com/Ricardo-Vv/changshu-anuo",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E5%B8%B8%E5%9D%8E%E9%98%BF%E8%AF%BA",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  musk: {
+    id: "musk",
+    name: "马斯克",
+    description: "第一性原理思考者，用物理学的视角拆解成本结构、挑战行业假设。激进迭代，白痴指数。",
+    placeholder: "从第一性原理想想这个问题...",
+    repoUrl: "https://github.com/alchaincyf/elon-musk-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/elon-musk-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/elon-musk-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E9%9B%8C%E6%96%AF%E5%85%8B",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  feynman: {
+    id: "feynman",
+    name: "费曼",
+    description: "诺贝尔物理学家，用「货物崇拜」检测伪理解。命名不等于理解，能做个演示才是真懂。",
+    placeholder: "你真的理解了，还是只记住了名字？",
+    repoUrl: "https://github.com/alchaincyf/feynman-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/feynman-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/feynman-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E8%B4%B9%E6%9B%BC",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  marx: {
+    id: "marx",
+    name: "马克思",
+    description: "结构分析方法论，识别矛盾、映射系统、找到杠杆点——而非症状。适用于产品策略、组织 dysfunction。",
+    placeholder: "从结构分析这个问题...",
+    repoUrl: "https://github.com/baojiachen0214/karlmarx-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/baojiachen0214/karlmarx-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/baojiachen0214/karlmarx-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E9%9A%A8%E5%85%8B%E6%80%9D",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  karpathy: {
+    id: "karpathy",
+    name: "卡帕西",
+    description: "AI 研究者的视角，从神经网络、梯度下降到大规模训练。用工程直觉理解机器学习。",
+    placeholder: "从 AI 视角分析一下...",
+    repoUrl: "https://github.com/alchaincyf/karpathy-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/karpathy-skill/master/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/karpathy-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=Andrej%20Karpathy",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  mises: {
+    id: "mises",
+    name: "米塞斯",
+    description: "人类行为学创始人，用经济计算、干预主义分析社会主义、价格管制、官僚制。追问价格与利润，而非口号。",
+    placeholder: "从价格和利润的角度分析...",
+    repoUrl: "https://github.com/LijiayuDeng/mises-perspective",
+    rawSkillUrl: "https://raw.githubusercontent.com/LijiayuDeng/mises-perspective/main/SKILL.md",
+    readmeUrl: "https://github.com/LijiayuDeng/mises-perspective",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E7%B1%B3%E5%AF%9E%E6%96%AF",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  mrbeast: {
+    id: "mrbeast",
+    name: "MrBeast",
+    description: "YouTube 顶流创作者，用流量思维、爆款公式、内容杠杆打造现象级视频。极致投入，病毒传播。",
+    placeholder: "从流量思维分析这个内容...",
+    repoUrl: "https://github.com/alchaincyf/mrbeast-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/mrbeast-skill/master/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/mrbeast-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=MrBeast",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  munger: {
+    id: "munger",
+    name: "芒格",
+    description: "逆向思考大师，用认知偏误检查、Lollapalooza 效应、跨学科分析审视决策。先想怎么失败，再想怎么成功。",
+    placeholder: "逆向思考一下，这为什么会失败？",
+    repoUrl: "https://github.com/alchaincyf/munger-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/munger-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/munger-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E6%9F%A0%E6%9F%A5%E8%8C%AF%E6%A0%BC",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  naval: {
+    id: "naval",
+    name: "纳瓦尔",
+    description: "杠杆思维创始人，用特定知识、无需许可的路径、财富定义重塑人生选择。追求资产而非工资。",
+    placeholder: "这件事有杠杆吗？",
+    repoUrl: "https://github.com/alchaincyf/naval-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/naval-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/naval-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=Naval%20Ravikant",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  graham: {
+    id: "graham",
+    name: "保罗·格雷厄姆",
+    description: "YC 创始人，用 essays 思维、黑客精神、创业直觉审视产品和人生选择。写作不只是表达，是思考本身。",
+    placeholder: "从黑客视角分析这个想法...",
+    repoUrl: "https://github.com/alchaincyf/paul-graham-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/paul-graham-skill/master/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/paul-graham-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=Paul%20Graham",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  jobs: {
+    id: "jobs",
+    name: "乔布斯",
+    description: "产品设计教父，用极简主义、用户体验、品味重塑科技产品。记住你会死，是做重大选择的最好工具。",
+    placeholder: "如果是乔布斯，他会怎么设计？",
+    repoUrl: "https://github.com/alchaincyf/steve-jobs-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/steve-jobs-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/steve-jobs-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E5%A9%86%E5%B8%83%E6%96%AF",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  taleb: {
+    id: "taleb",
+    name: "塔勒布",
+    description: "反脆弱之父，用黑天鹅、尾部风险、杠铃策略质疑主流叙事。平均深度四英尺的河流也能淹死人。",
+    placeholder: "这有尾部风险吗？",
+    repoUrl: "https://github.com/alchaincyf/taleb-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/taleb-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/taleb-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E6%A4%A0%E5%8B%87%E8%94%A1",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  trump: {
+    id: "trump",
+    name: "特朗普",
+    description: "谈判与传播大师，用权力逻辑、锚定效应、情绪杠杆分析政治与商业博弈。瞄准很高，然后一直推。",
+    placeholder: "从懂王视角分析这个谈判...",
+    repoUrl: "https://github.com/alchaincyf/trump-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/trump-skill/master/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/trump-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E7%9C%E6%87%9E%E5%9C%BA",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  zhangyiming: {
+    id: "zhangyiming",
+    name: "张一鸣",
+    description: "字节跳动创始人，用算法思维、延迟满足、组织效率重塑内容分发。Context not Control。",
+    placeholder: "从算法视角分析这个决策...",
+    repoUrl: "https://github.com/alchaincyf/zhang-yiming-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/zhang-yiming-skill/master/SKILL.md",
+    readmeUrl: "https://github.com/alchaincyf/zhang-yiming-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E5%BC%A0%E4%B8%80%E9%A3%9E",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  zizek: {
+    id: "zizek",
+    name: "齐泽克",
+    description: "哲学狙击手，把你自以为想清楚了的东西翻出你没意识到的那一层。不是模仿说话，是问题意识本身。",
+    placeholder: "翻出你没意识到的那一层...",
+    repoUrl: "https://github.com/JikunR/zizek-skill",
+    rawSkillUrl: "https://raw.githubusercontent.com/JikunR/zizek-skill/main/SKILL.md",
+    readmeUrl: "https://github.com/JikunR/zizek-skill",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E9%9B%81%E6%B8%8C%E5%85%8B",
     mode: "skill-native",
     retrieval: "none"
   }

@@ -1,6 +1,45 @@
 import Link from "next/link";
 import { personas } from "@/lib/personas";
 
+// 人物分类
+const categories = [
+  {
+    id: "creator",
+    name: "网红自媒体",
+    personas: [
+      "fengge",
+      "huchenfeng",
+      "tongjincheng",
+      "changshuanuo",
+      "mrbeast",
+    ],
+  },
+  {
+    id: "entrepreneur",
+    name: "企业家投资人",
+    personas: [
+      "buffett",
+      "musk",
+      "munger",
+      "naval",
+      "graham",
+      "jobs",
+      "zhangyiming",
+      "trump",
+    ],
+  },
+  {
+    id: "thinker",
+    name: "思想家学者",
+    personas: ["marx", "mises", "taleb", "zizek", "feynman", "karpathy"],
+  },
+  {
+    id: "educator",
+    name: "教育艺人",
+    personas: ["zhangxuefeng", "guodegang"],
+  },
+];
+
 export default function HomePage() {
   return (
     <main className="min-h-screen px-5 py-5 md:px-8 md:py-8">
@@ -18,34 +57,46 @@ export default function HomePage() {
           </p>
         </header>
 
-        {/* Personas Grid */}
-        <section className="pt-6 md:pt-8">
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
-            {Object.values(personas).map((persona) => (
-              <Link
-                key={persona.id}
-                href={`/chat/${persona.id}`}
-                className="surface group rounded-xl p-4 transition-all duration-200 hover:border-[color:var(--accent)] hover:shadow-sm md:rounded-xl md:p-5"
-              >
-                {/* Name */}
-                <h2 className="font-display text-lg tracking-[-0.02em] md:text-xl">
-                  {persona.name}
-                </h2>
+        {/* Personas by Category */}
+        <section className="space-y-8 pt-6 md:space-y-10 md:pt-8">
+          {categories.map((category) => (
+            <div key={category.id}>
+              {/* Category Title */}
+              <h2 className="font-display mb-4 text-lg tracking-[-0.02em] text-[color:var(--muted)] md:mb-5 md:text-xl">
+                {category.name}
+              </h2>
 
-                {/* Full description */}
-                <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm md:leading-6">
-                  {persona.description}
-                </p>
-              </Link>
-            ))}
-          </div>
+              {/* Personas Grid */}
+              <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4">
+                {category.personas.map((personaId) => {
+                  const persona = personas[personaId];
+                  return (
+                    <Link
+                      key={persona.id}
+                      href={`/chat/${persona.id}`}
+                      className="surface group rounded-xl p-4 transition-all duration-200 hover:border-[color:var(--accent)] hover:shadow-sm md:p-5"
+                    >
+                      {/* Name */}
+                      <h3 className="font-display text-base tracking-[-0.02em] md:text-lg">
+                        {persona.name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm md:leading-6">
+                        {persona.description}
+                      </p>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </section>
 
         {/* Footer */}
         <footer className="mt-6 border-t border-[color:var(--line)] pt-5 md:mt-8 md:pt-6">
-          {/* Coming soon */}
           <p className="text-xs text-[color:var(--muted)] md:text-sm">
-            更多人物，敬请期待
+            更多人格，敬请期待
           </p>
         </footer>
       </div>

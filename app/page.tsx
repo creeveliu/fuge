@@ -11,10 +11,10 @@ export default function HomePage() {
             Fuge
           </p>
           <h1 className="font-display mt-3 text-3xl leading-tight tracking-[-0.04em] md:text-5xl">
-            与提炼人格对话
+            人格模拟器
           </h1>
           <p className="mt-3 text-sm leading-6 text-[color:var(--muted)] md:mt-4 md:text-base">
-            选一个人物，直接提问。没有安装、没有工作流，只有对话。
+            与提炼人格对话。选一个人物，直接提问。
           </p>
         </header>
 

@@ -4,7 +4,7 @@
 
 ## 功能
 
-- **三位人物**：峰哥、户晨风、张雪峰
+- **四位人物**：峰哥、户晨风、张雪峰、郭德纲
 - **原味风格保留**：每个回复都带着人物的语气和锋利
 - **流式回复**：打字机效果，实时呈现
 - **Markdown 支持**：加粗、列表、标题等格式完整渲染
@@ -17,6 +17,7 @@
 | **峰哥** | 漂泊江湖的现实主义者，用黑色幽默点评世事。不装、不绕弯，看问题带着底层视角。 |
 | **户晨风** | 消费现实主义创作者，用「购买力挑战」撕开消费主义的遮羞布。敢说实话，敢晒账单。 |
 | **张雪峰** | 大学选专业的扛旗人，帮学生和家长闯过志愿填报这道坎。话糙理不糙，句句是干货。 |
+| **郭德纲** | 相声江湖的手艺人，用市井智慧讲人情世故。恩怨分明、规矩至上，观众笑了才算数。 |
 
 ## 技术栈
 
@@ -84,6 +85,7 @@ components/
 - 峰哥：[rottenpen/fengge-wangmingtianya-perspective](https://github.com/rottenpen/fengge-wangmingtianya-perspective)
 - 户晨风：[Janlaywss/hu-chenfeng-skill](https://github.com/Janlaywss/hu-chenfeng-skill)
 - 张雪峰：[alchaincyf/zhangxuefeng-skill](https://github.com/alchaincyf/zhangxuefeng-skill)
+- 郭德纲：[ByteRax/guodegang-skills](https://github.com/ByteRax/guodegang-skills)
 
 ## License
 

@@ -1,4 +1,4 @@
-export type PersonaId = "fengge" | "huchenfeng" | "zhangxuefeng";
+export type PersonaId = "fengge" | "huchenfeng" | "zhangxuefeng" | "guodegang";
 
 export type Persona = {
   id: PersonaId;
@@ -43,6 +43,17 @@ export const personas: Record<PersonaId, Persona> = {
     rawSkillUrl: "https://raw.githubusercontent.com/alchaincyf/zhangxuefeng-skill/main/SKILL.md",
     readmeUrl: "https://github.com/alchaincyf/zhangxuefeng-skill",
     wikiUrl: "https://baike.baidu.com/search/word?word=%E5%BC%A0%E9%9B%AA%E5%B3%B0%20%E8%80%81%E5%B8%88",
+    mode: "skill-native",
+    retrieval: "none"
+  },
+  guodegang: {
+    id: "guodegang",
+    name: "郭德纲",
+    description: "相声江湖的手艺人，用市井智慧讲人情世故。恩怨分明、规矩至上，观众笑了才算数。",
+    repoUrl: "https://github.com/ByteRax/guodegang-skills",
+    rawSkillUrl: "https://raw.githubusercontent.com/ByteRax/guodegang-skills/main/SKILL.md",
+    readmeUrl: "https://github.com/ByteRax/guodegang-skills",
+    wikiUrl: "https://baike.baidu.com/search/word?word=%E9%83%AD%E5%BE%B7%E7%BA%B2",
     mode: "skill-native",
     retrieval: "none"
   }

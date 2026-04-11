@@ -11,5 +11,8 @@ describe("skills", () => {
 
     const zhangxuefengSkill = await loadSkill("zhangxuefeng");
     expect(zhangxuefengSkill).toContain("张雪峰");
+
+    const guodegangSkill = await loadSkill("guodegang");
+    expect(guodegangSkill).toContain("郭德纲");
   });
 });

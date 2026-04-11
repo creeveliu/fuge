@@ -97,7 +97,7 @@ app/
   api/chat/         # 流式聊天 API
 lib/
   personas.ts       # 人物注册表（21人 + 分类）
-  skills.ts         # Skill 加载函数
+  skills.ts         # Skill 加载（含 references 自动加载）
   chat.ts           # 系统提示构建
   model.ts          # 模型调用
   retrieval.ts      # 户晨风向量检索
@@ -105,8 +105,8 @@ lib/
 data/
   skills/           # Skill 文件（每个 persona 独立文件夹）
     fengge/
-      SKILL.md
-      references/
+      SKILL.md      # 主 Skill 文件
+      references/   # 被 SKILL.md 引用时自动加载
         research/
           ...
     huchenfeng/
@@ -117,6 +117,10 @@ components/
   chat-shell.tsx    # 聊天界面
   typewriter-loading.tsx  # 加载动画
 ```
+
+**References 加载机制：**
+
+系统自动从 SKILL.md 中提取 `references/*.md` 路径并加载。只有 SKILL.md 中明确引用的文件才会被包含在 prompt 中。
 
 ## Skill 来源
 

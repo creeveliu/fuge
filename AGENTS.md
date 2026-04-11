@@ -36,10 +36,19 @@ data/skills/
   ...
 ```
 
+**References 加载机制：**
+
+系统会自动从 SKILL.md 中提取 `references/*.md` 路径并加载。支持的引用格式：
+- Markdown link：`[references/persona-profile.md](references/persona-profile.md)`
+- 反引号：`完整速查表见 `references/25-biases.md``
+- 纯文本：`references/research/03-safety-and-boundaries.md`
+
+只有 SKILL.md 中明确引用的文件才会被加载，未引用的文件不会包含在 prompt 中。
+
 更新 Skill 时：
 1. 从对应 GitHub 仓库获取最新内容
 2. 更新 `data/skills/{personaId}/SKILL.md` 文件
-3. 如有 references 目录，一并下载到 `references/research/`
+3. 如有 references 目录，一并下载
 4. 运行测试确保无误
 
 ## 人物注册

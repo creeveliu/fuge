@@ -173,16 +173,18 @@ export default function ChatShell(props: {
     <main className="h-screen overflow-hidden px-4 py-4 md:px-5 md:py-5">
       <div className="mx-auto flex h-full max-w-6xl gap-4">
         <aside className="surface hidden w-[280px] shrink-0 rounded-[1.75rem] p-6 md:flex md:flex-col">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
-          >
-            <span aria-hidden>←</span>
-            返回首页
-          </Link>
-          <p className="font-display mt-4 text-sm uppercase tracking-[0.32em] text-[color:var(--muted)]">
-            Personai
-          </p>
+          <div className="flex items-center justify-between">
+            <Link
+              href="/"
+              className="text-sm text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
+              aria-label="返回首页"
+            >
+              ←
+            </Link>
+            <p className="font-display text-sm uppercase tracking-[0.32em] text-[color:var(--muted)]">
+              Personai
+            </p>
+          </div>
           <h1 className="font-display mt-6 text-4xl tracking-[-0.05em]">
             {props.personaName}
           </h1>
@@ -218,12 +220,12 @@ export default function ChatShell(props: {
           <header className="surface flex flex-wrap items-center justify-between gap-4 rounded-[1.5rem] px-5 py-4 md:hidden">
             <Link
               href="/"
-              className="flex items-center gap-2 text-sm text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
+              className="text-base text-[color:var(--muted)] transition hover:text-[color:var(--text)]"
+              aria-label="返回首页"
             >
-              <span aria-hidden>←</span>
-              返回
+              ←
             </Link>
-            <div className="text-center">
+            <div>
               <p className="font-display text-2xl tracking-[-0.04em]">{props.personaName}</p>
               <p className="mt-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
                 Personai

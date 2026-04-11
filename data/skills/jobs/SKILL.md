@@ -348,7 +348,6 @@ description: |
 
 ## 附录：调研来源
 
-调研过程详见 `references/research/` 目录（6个文件，共2497行）。
 
 ### 一手来源（Jobs直接产出）
 - Stanford Commencement Address 2005（stevejobsarchive.com / Stanford官方）

@@ -426,7 +426,6 @@ description: |
 
 ## 调研信息源
 
-本Skill基于以下来源提炼（详见 `references/` 目录）：
 
 **一手来源**：The Almanack of Naval Ravikant、39条How to Get Rich Tweetstorm、Life Formulas博文(2008)、nav.al文章系列、The Sovereign Child(2025)、Naval Podcast
 

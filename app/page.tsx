@@ -46,9 +46,6 @@ export default function HomePage() {
           {/* Features */}
           <div className="flex flex-wrap gap-2 text-xs text-[color:var(--muted)] md:gap-3 md:text-sm">
             <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">
-              原味风格保留
-            </span>
-            <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">
               流式回复
             </span>
             <span className="rounded-full border border-[color:var(--line)] bg-white/60 px-3 py-1.5 md:px-4 md:py-2">

@@ -1,5 +1,7 @@
 # Personai - 人格模拟器
 
+**在线体验：https://aiperson.vercel.app/**
+
 与提炼人格对话。选一个人物，直接提问。
 
 ## 功能

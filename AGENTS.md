@@ -6,13 +6,20 @@
 
 Fuge 是一个「提炼人格」对话平台。核心是让用户与虚拟人物进行真实、原味的对话体验。
 
-## 人物 Skill 来源
+## 人物 Skill 存储
 
-人物定义来自 GitHub 仓库的 SKILL.md 文件。为提升响应速度，Skill 内容已内联到 `lib/skills.ts`。
+人物 Skill 存放在 `data/skills/` 目录，每个 persona 独立一个 `.md` 文件：
 
-更新 Skill 时，需同步：
+```
+data/skills/
+  fengge.md          # 峰哥 SKILL.md
+  huchenfeng.md      # 户晨风 SKILL.md
+  zhangxuefeng.md    # 张雪峰 SKILL.md
+```
+
+更新 Skill 时：
 1. 从对应 GitHub 仓库获取最新 SKILL.md
-2. 更新 `lib/skills.ts` 中的对应字符串
+2. 更新 `data/skills/{personaId}.md` 文件
 3. 运行测试确保无误
 
 ## 人物注册

@@ -61,11 +61,17 @@ app/
   api/chat/         # 流式聊天 API
 lib/
   personas.ts       # 人物注册表
-  skills.ts         # 内联 Skill 内容
+  skills.ts         # Skill 加载函数
   chat.ts           # 系统提示构建
   model.ts          # 模型调用
   retrieval.ts      # 户晨风向量检索
   typewriter.ts     # 打字机效果
+data/
+  skills/           # Skill 文件（每个 persona 独立）
+    fengge.md
+    huchenfeng.md
+    zhangxuefeng.md
+  retrieval/        # 向量检索数据
 components/
   chat-shell.tsx    # 聊天界面
   typewriter-loading.tsx  # 加载动画

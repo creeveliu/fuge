@@ -41,17 +41,6 @@ export default function ChatShell(props: {
     null,
   );
 
-  // Voice toggle with localStorage persistence
-  const [voiceEnabled, setVoiceEnabled] = useState(() => {
-    if (typeof window === "undefined") return true;
-    const stored = localStorage.getItem("voiceEnabled");
-    return stored === null ? true : stored === "true";
-  });
-
-  // Save to localStorage when changed
-  useEffect(() => {
-    localStorage.setItem("voiceEnabled", String(voiceEnabled));
-  }, [voiceEnabled]);
   const isComposingRef = useRef(false);
   const queueRef = useRef("");
   const flushTimerRef = useRef<number | null>(null);
@@ -427,7 +416,6 @@ export default function ChatShell(props: {
                               <VoicePlayer
                                 text={message.content}
                                 personaId={props.personaId}
-                                autoPlay={voiceEnabled && index === messages.length - 1}
                               />
                             </div>
                           )}
@@ -466,35 +454,8 @@ export default function ChatShell(props: {
                 {isSending ? "发送中" : "发送"}
               </button>
             </div>
-            <div className="mt-2 flex items-center justify-between text-xs text-[color:var(--muted)]">
-              <span>回车发送，Shift+回车换行</span>
-              {personas[props.personaId as keyof typeof personas]?.voice && (
-                <button
-                  onClick={() => setVoiceEnabled(!voiceEnabled)}
-                  className="flex items-center gap-1 transition hover:text-[color:var(--accent)]"
-                  title={voiceEnabled ? "关闭语音自动播放" : "开启语音自动播放"}
-                >
-                  {voiceEnabled ? (
-                    <>
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                      </svg>
-                      自动播放
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                        <line x1="22" y1="9" x2="16" y2="15" />
-                        <line x1="16" y1="9" x2="22" y2="15" />
-                      </svg>
-                      已关闭
-                    </>
-                  )}
-                </button>
-              )}
+            <div className="mt-2 text-xs text-[color:var(--muted)]">
+              回车发送，Shift+回车换行
             </div>
           </form>
         </div>

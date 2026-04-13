@@ -5,13 +5,11 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 type VoicePlayerProps = {
   text: string;
   personaId: string;
-  autoPlay?: boolean;
 };
 
 export default function VoicePlayer({
   text,
   personaId,
-  autoPlay = false,
 }: VoicePlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -91,10 +89,6 @@ export default function VoicePlayer({
       }
     };
   }, []);
-
-  // Auto-play on mount if enabled
-  // Note: We don't auto-play here because we need to wait for
-  // the complete response. This is handled in ChatShell.
 
   if (error) {
     return (

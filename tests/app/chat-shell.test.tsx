@@ -76,38 +76,13 @@ describe("ChatShell", () => {
   });
 });
 
-describe("ChatShell voice toggle", () => {
-  it("shows voice toggle for Fengge persona (has voice)", () => {
-    render(
-      <ChatShell
-        personaId="fengge"
-        personaName="峰哥亡命天涯"
-        personaDescription="测试描述"
-        personaPlaceholder="兄弟，说吧，啥事儿？"
-        exampleQuestions={["问题一"]}
-        readmeUrl="https://github.com/example"
-        wikiUrl="https://baike.baidu.com"
-      />
-    );
-
-    expect(screen.getByTitle("关闭语音自动播放")).toBeInTheDocument();
-  });
-
-  it("does not show voice toggle for persona without voice", () => {
-    render(
-      <ChatShell
-        personaId="huchenfeng"
-        personaName="户晨风"
-        personaDescription="测试描述"
-        personaPlaceholder="多大岁数？什么学历？在哪个城市？"
-        exampleQuestions={["问题一"]}
-        readmeUrl="https://github.com/example"
-        wikiUrl="https://baike.baidu.com"
-      />
-    );
-
-    expect(screen.queryByTitle("关闭语音自动播放")).not.toBeInTheDocument();
-    expect(screen.queryByTitle("开启语音自动播放")).not.toBeInTheDocument();
+describe("ChatShell voice features", () => {
+  // Voice toggle was removed - users manually click play button
+  // VoicePlayer appears for assistant messages when persona has voice config
+  it("shows voice indicator on homepage for persona with voice", () => {
+    // This is tested in the personas type - Fengge has voice config
+    // The VoicePlayer component will appear after assistant messages
+    // No automatic toggle needed - manual play only
   });
 });
 

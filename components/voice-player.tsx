@@ -100,9 +100,13 @@ export default function VoicePlayer({
     return (
       <button
         onClick={fetchAndPlay}
-        className="text-xs text-red-500 hover:text-red-600"
+        className="flex items-center gap-1 text-xs text-red-500 hover:text-red-600"
         title={error}
       >
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+          <path d="M3 3v5h5" />
+        </svg>
         重试
       </button>
     );
@@ -110,8 +114,12 @@ export default function VoicePlayer({
 
   if (isLoading) {
     return (
-      <span className="text-xs text-[color:var(--muted)]">
-        加载中...
+      <span className="flex items-center gap-1 text-xs text-[color:var(--muted)]">
+        <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="10" strokeOpacity="0.25" />
+          <path d="M12 2a10 10 0 0 1 10 10" strokeLinecap="round" />
+        </svg>
+        加载中
       </span>
     );
   }
@@ -120,10 +128,14 @@ export default function VoicePlayer({
     return (
       <button
         onClick={stop}
-        className="text-xs hover:text-[color:var(--accent)]"
+        className="flex items-center gap-1 text-xs hover:text-[color:var(--accent)]"
         title="停止播放"
       >
-        ⏹ 停止
+        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="6" y="4" width="4" height="16" rx="1" />
+          <rect x="14" y="4" width="4" height="16" rx="1" />
+        </svg>
+        停止
       </button>
     );
   }
@@ -131,10 +143,14 @@ export default function VoicePlayer({
   return (
     <button
       onClick={fetchAndPlay}
-      className="text-xs hover:text-[color:var(--accent)]"
+      className="flex items-center gap-1 text-xs hover:text-[color:var(--accent)]"
       title="播放语音"
     >
-      🔊 播放
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+      </svg>
+      播放
     </button>
   );
 }

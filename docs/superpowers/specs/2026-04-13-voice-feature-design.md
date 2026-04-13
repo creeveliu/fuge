@@ -61,33 +61,56 @@ POST /api/tts
 BAILIAN_TTS_API_KEY=      # 百炼语音合成 API Key
 ```
 
-**API 调用**（百炼 CosyVoice TTS）：
+**API 调用**（已验证可用）：
 
-> ⚠️ **待确认**：实现时需验证确切的 API endpoint 和参数格式。参考：
-> - 阿里云百炼控制台：https://bailian.console.aliyun.com/
-> - CosyVoice 文档目录：https://help.aliyun.com/zh/model-studio/developer-reference/
+**Endpoint**: `https://dashscope.aliyuncs.com/api/v1/services/audio/tts/SpeechSynthesizer`
 
-**预期的调用格式**（基于 DashScope API 模式）：
+**请求格式**：
 ```typescript
-const response = await fetch('https://dashscope.aliyuncs.com/api/v1/services/audio/tts', {
-  method: 'POST',
-  headers: {
-    'Authorization': `Bearer ${process.env.BAILIAN_TTS_API_KEY}`,
-    'Content-Type': 'application/json',
-    'X-DashScope-Async': 'enable',  // 可能需要异步模式
-  },
-  body: JSON.stringify({
-    model: 'cosyvoice-v3.5-plus',
-    input: text,
-    voice: voiceId,  // cosyvoice-v3.5-plus-bailian-812a621be1304cea9ef7460f772b393b
-    format: 'mp3',   // 或 wav
-  }),
-});
+const response = await fetch(
+  'https://dashscope.aliyuncs.com/api/v1/services/audio/tts/SpeechSynthesizer',
+  {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env.BAILIAN_TTS_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'cosyvoice-v3.5-plus',
+      input: {
+        text: text,           // AI 回复文字
+        voice: voiceId,       // cosyvoice-v3.5-plus-bailian-812a621be1304cea9ef7460f772b393b
+        format: 'mp3',
+      },
+    }),
+  }
+);
 
-// 响应可能是：
-// 1. 直接返回音频数据（需要设置合适的 response headers）
-// 2. 返回任务 ID，需要轮询获取结果（异步模式）
+// 响应格式
+const data = await response.json();
+// {
+//   "output": {
+//     "audio": {
+//       "id": "...",
+//       "url": "http://dashscope-result-bj.oss-cn-beijing.aliyuncs.com/...",  // 音频下载 URL
+//       "expires_at": 1776135923  // URL 过期时间戳
+//     },
+//     "finish_reason": "stop"
+//   },
+//   "usage": { "characters": 24 },
+//   "request_id": "..."
+// }
+
+// 下载音频
+const audioUrl = data.output.audio.url;
+const audioResponse = await fetch(audioUrl);
+const audioBuffer = await audioResponse.arrayBuffer();
 ```
+
+**注意事项**：
+- 返回的音频 URL 有过期时间（`expires_at`），需及时下载
+- 音频存储在阿里云 OSS，可直接通过 URL 访问（无需认证）
+- `cosyvoice-v3.5-plus` 仅支持复刻音色（如峰哥的音色 ID），不支持系统音色
 
 ---
 

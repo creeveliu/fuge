@@ -658,3 +658,38 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 - **Audio URL expiration**: DashScope returns OSS URL with expiration - we download and return blob to avoid expiration issues
 - **Auto-play timing**: VoicePlayer does not auto-play on mount - ChatShell controls when to trigger based on voiceEnabled and message completion
 - **Only Fengge**: Voice only works for Fengge persona currently - other personas show no voice UI
+
+---
+
+## 踩坑记录（实现过程中遇到的问题）
+
+### 2026-04-13：qwen3-tts-vc 模型迁移
+
+从 cosyvoice 迁移到 qwen3-tts-vc 自定义音色时遇到的问题：
+
+| 问题 | cosyvoice | qwen3-tts-vc | 解决方案 |
+|------|-----------|--------------|----------|
+| Endpoint | `/api/v1/services/audio/tts/SpeechSynthesizer` | `/api/v1/services/aigc/multimodal-generation/generation` | 更改 endpoint URL |
+| 请求格式 | `input: { text, voice, format }` | `input: { text, voice, language_type }` | 更改请求结构 |
+| 音频格式 | MP3 | WAV | 动态判断 Content-Type |
+| Voice ID | `cosyvoice-v3.5-plus-bailian-xxx` | `qwen-tts-vc-bailian-voice-yyy` | 更新 personas.ts 配置 |
+
+**关键修复**：Content-Type 必须根据实际音频格式设置
+
+```typescript
+// 错误：导致浏览器无法解析，首次播放失败
+"Content-Type": "audio/mpeg"  // WAV 文件错误地标记为 MP3
+
+// 正确：动态判断
+const contentType = audioUrl.includes(".wav") ? "audio/wav" : "audio/mpeg";
+```
+
+### Vercel 环境变量配置
+
+首次部署线上失败：`TTS API key not configured`
+
+**解决**：
+```bash
+vercel env add BAILIAN_TTS_API_KEY production --value "sk-xxx" --yes
+vercel --prod --yes  # 重新部署
+```

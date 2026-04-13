@@ -278,3 +278,74 @@ const [voiceEnabled, setVoiceEnabled] = useLocalStorage('voiceEnabled', true);
 | `components/chat-shell.tsx` | 修改 | 添加语音开关和播放按钮集成 |
 | `app/page.tsx` | 修改 | 人物卡片添加语音图标 |
 | `.env.example` | 修改 | 添加 BAILIAN_TTS_API_KEY |
+
+---
+
+## 踩坑记录
+
+### 2026-04-13：qwen3-tts-vc 模型迁移问题
+
+**背景**：用户使用 qwen3-tts-vc 训练了自定义音色，需要从 cosyvoice 模型迁移。
+
+**踩坑**：
+
+1. **API Endpoint 不同**
+   - cosyvoice: `/api/v1/services/audio/tts/SpeechSynthesizer`
+   - qwen3-tts-vc: `/api/v1/services/aigc/multimodal-generation/generation`
+   - 错误：使用 cosyvoice endpoint 会返回 "url error"
+
+2. **Voice ID 格式不兼容**
+   - cosyvoice voice ID: `cosyvoice-v3.5-plus-bailian-xxx`
+   - qwen3-tts-vc voice ID: `qwen-tts-vc-bailian-voice-yyy`
+   - 直接混用会返回 "Invalid voice specified"
+
+3. **音频格式不同**
+   - cosyvoice 返回 MP3 格式
+   - qwen3-tts-vc 返回 WAV 格式
+   - **Content-Type 必须正确设置**：WAV 文件要用 `audio/wav`，否则浏览器无法解析，首次播放失败显示重试按钮
+
+4. **模型名称注意**
+   - 正确模型名: `qwen3-tts-vc-2026-01-22`（注意是 vc 不是 vd）
+   - 文档示例中的 `qwen3-tts-vd-2026-01-26` 是另一个模型
+
+**解决方案**：
+
+```typescript
+// app/api/tts/route.ts 关键代码
+
+// 1. 正确的 endpoint
+const endpoint = "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation";
+
+// 2. 正确的请求格式
+body: JSON.stringify({
+  model: "qwen3-tts-vc-2026-01-22",
+  input: {
+    text: text,
+    voice: persona.voice.voiceId,  // qwen-tts-vc-bailian-voice-xxx 格式
+    language_type: "Chinese",
+  },
+})
+
+// 3. 动态判断 Content-Type
+const contentType = audioUrl.includes(".wav") ? "audio/wav" : "audio/mpeg";
+```
+
+**验证命令**：
+
+```bash
+curl -X POST "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation" \
+  -H "Authorization: Bearer $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen3-tts-vc-2026-01-22",
+    "input": {
+      "text": "测试一下",
+      "voice": "qwen-tts-vc-bailian-voice-xxx",
+      "language_type": "Chinese"
+    }
+  }'
+```
+
+**参考文档**：
+- 百炼控制台：https://bailian.console.aliyun.com
+- API 文档：https://help.aliyun.com/zh/model-studio/developer-reference/qwen3-tts

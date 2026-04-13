@@ -33,6 +33,11 @@ export type Persona = {
   mode: "skill-native";
   retrieval: "none" | "vector";
   exampleQuestions: string[];
+  // 新增：语音配置（可选）
+  voice?: {
+    voiceId: string;      // 百炼 TTS 音色 ID
+    speed?: number;       // 语速，默认 1.0
+  };
 };
 
 export const personas: Record<PersonaId, Persona> = {
@@ -48,7 +53,11 @@ export const personas: Record<PersonaId, Persona> = {
     wikiUrl: "https://baike.baidu.com/search/word?word=%E5%B3%B0%E5%93%A5%E4%BA%A1%E5%91%BD%E5%A4%A9%E6%B6%AF",
     mode: "skill-native",
     retrieval: "none",
-    exampleQuestions: ['年轻人该怎么闯？', '工资三千房租两千，怎么活？', '该不该回老家？']
+    exampleQuestions: ['年轻人该怎么闯？', '工资三千房租两千，怎么活？', '该不该回老家？'],
+    voice: {
+      voiceId: "cosyvoice-v3.5-plus-bailian-812a621be1304cea9ef7460f772b393b",
+      speed: 1.0,
+    },
   },
   huchenfeng: {
     id: "huchenfeng",

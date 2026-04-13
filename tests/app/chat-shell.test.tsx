@@ -76,6 +76,41 @@ describe("ChatShell", () => {
   });
 });
 
+describe("ChatShell voice toggle", () => {
+  it("shows voice toggle for Fengge persona (has voice)", () => {
+    render(
+      <ChatShell
+        personaId="fengge"
+        personaName="峰哥亡命天涯"
+        personaDescription="测试描述"
+        personaPlaceholder="兄弟，说吧，啥事儿？"
+        exampleQuestions={["问题一"]}
+        readmeUrl="https://github.com/example"
+        wikiUrl="https://baike.baidu.com"
+      />
+    );
+
+    expect(screen.getByTitle("关闭语音自动播放")).toBeInTheDocument();
+  });
+
+  it("does not show voice toggle for persona without voice", () => {
+    render(
+      <ChatShell
+        personaId="huchenfeng"
+        personaName="户晨风"
+        personaDescription="测试描述"
+        personaPlaceholder="多大岁数？什么学历？在哪个城市？"
+        exampleQuestions={["问题一"]}
+        readmeUrl="https://github.com/example"
+        wikiUrl="https://baike.baidu.com"
+      />
+    );
+
+    expect(screen.queryByTitle("关闭语音自动播放")).not.toBeInTheDocument();
+    expect(screen.queryByTitle("开启语音自动播放")).not.toBeInTheDocument();
+  });
+});
+
 describe("TypewriterLoading", () => {
   it("renders a cursor-only loading state", () => {
     render(<TypewriterLoading />);

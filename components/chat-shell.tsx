@@ -5,7 +5,9 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import TypewriterLoading from "@/components/typewriter-loading";
+import VoicePlayer from "@/components/voice-player";
 import { consumeTypewriterFrame } from "@/lib/typewriter";
+import { personas } from "@/lib/personas";
 
 const TOOL_NAME_MAP: Record<string, string> = {
   web_search: "搜索网络",
@@ -38,6 +40,18 @@ export default function ChatShell(props: {
   const [toolCallStatus, setToolCallStatus] = useState<ToolCallStatus | null>(
     null,
   );
+
+  // Voice toggle with localStorage persistence
+  const [voiceEnabled, setVoiceEnabled] = useState(() => {
+    if (typeof window === "undefined") return true;
+    const stored = localStorage.getItem("voiceEnabled");
+    return stored === null ? true : stored === "true";
+  });
+
+  // Save to localStorage when changed
+  useEffect(() => {
+    localStorage.setItem("voiceEnabled", String(voiceEnabled));
+  }, [voiceEnabled]);
   const isComposingRef = useRef(false);
   const queueRef = useRef("");
   const flushTimerRef = useRef<number | null>(null);
@@ -293,6 +307,17 @@ export default function ChatShell(props: {
               <span aria-hidden>↗</span>
             </a>
           </div>
+          {/* Voice toggle - only show if persona has voice */}
+          {personas[props.personaId as keyof typeof personas]?.voice && (
+            <button
+              onClick={() => setVoiceEnabled(!voiceEnabled)}
+              className="flex items-center justify-between rounded-2xl border border-[color:var(--line)] bg-white/70 px-4 py-3 transition hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] text-sm"
+              title={voiceEnabled ? "关闭语音自动播放" : "开启语音自动播放"}
+            >
+              语音
+              <span>{voiceEnabled ? "🔊 自动播放" : "🔇 已关闭"}</span>
+            </button>
+          )}
           <p className="mt-auto rounded-2xl bg-[color:var(--accent-soft)] px-4 py-4 text-sm leading-6 text-[color:var(--muted)]">
             基于公开资料提炼的人格视角，不代表本人。
           </p>
@@ -402,6 +427,20 @@ export default function ChatShell(props: {
                             </span>
                           </div>
                         )}
+                        {/* Voice player for assistant messages - show for completed messages */}
+                        {personas[props.personaId as keyof typeof personas]?.voice &&
+                          message.content &&
+                          !isAnimatingText &&
+                          !isAwaitingFirstChunk &&
+                          !toolCallStatus && (
+                            <div className="mt-2">
+                              <VoicePlayer
+                                text={message.content}
+                                personaId={props.personaId}
+                                autoPlay={voiceEnabled && index === messages.length - 1}
+                              />
+                            </div>
+                          )}
                       </>
                     )}
                   </article>

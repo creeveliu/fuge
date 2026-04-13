@@ -55,7 +55,7 @@ export const personas: Record<PersonaId, Persona> = {
     retrieval: "none",
     exampleQuestions: ['年轻人该怎么闯？', '工资三千房租两千，怎么活？', '该不该回老家？'],
     voice: {
-      voiceId: "cosyvoice-v3.5-plus-bailian-812a621be1304cea9ef7460f772b393b",
+      voiceId: "qwen-tts-vc-bailian-voice-20260413125802994-9041",
       speed: 1.0,
     },
   },
@@ -72,7 +72,7 @@ export const personas: Record<PersonaId, Persona> = {
     retrieval: "vector",
     exampleQuestions: ['月入五千能存钱吗？', '年轻人该买房吗？', '消费主义陷阱怎么识别？'],
     voice: {
-      voiceId: "cosyvoice-v3.5-plus-bailian-ea19cd5a581e47d38638623db910746a",
+      voiceId: "qwen-tts-vc-bailian-voice-20260413125648166-49e0",
       speed: 1.0,
     },
   },

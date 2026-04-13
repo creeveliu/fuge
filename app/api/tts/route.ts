@@ -36,9 +36,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Call DashScope TTS API
+    // Call DashScope TTS API (qwen3-tts-vc uses multimodal-generation endpoint)
     const response = await fetch(
-      "https://dashscope.aliyuncs.com/api/v1/services/audio/tts/SpeechSynthesizer",
+      "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation",
       {
         method: "POST",
         headers: {
@@ -46,11 +46,11 @@ export async function POST(request: NextRequest) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "cosyvoice-v3.5-plus",
+          model: "qwen3-tts-vc-2026-01-22",
           input: {
             text: text,
             voice: persona.voice.voiceId,
-            format: "mp3",
+            language_type: "Chinese",
           },
         }),
       }

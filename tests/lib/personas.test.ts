@@ -32,14 +32,14 @@ describe("personas", () => {
   it("fengge has voice configuration", () => {
     expect(personas.fengge.voice).toBeDefined();
     expect(personas.fengge.voice?.voiceId).toBe(
-      "cosyvoice-v3.5-plus-bailian-812a621be1304cea9ef7460f772b393b"
+      "qwen-tts-vc-bailian-voice-20260413125802994-9041"
     );
   });
 
   it("huchenfeng has voice configuration", () => {
     expect(personas.huchenfeng.voice).toBeDefined();
     expect(personas.huchenfeng.voice?.voiceId).toBe(
-      "cosyvoice-v3.5-plus-bailian-ea19cd5a581e47d38638623db910746a"
+      "qwen-tts-vc-bailian-voice-20260413125648166-49e0"
     );
   });
 

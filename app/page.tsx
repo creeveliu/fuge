@@ -79,10 +79,20 @@ export default function HomePage() {
                       href={`/chat/${persona.id}`}
                       className="surface group rounded-xl p-4 transition-all duration-200 hover:border-[color:var(--accent)] hover:shadow-sm md:p-5"
                     >
-                      {/* Name */}
-                      <h3 className="font-display text-base tracking-[-0.02em] md:text-lg">
-                        {persona.name}
-                      </h3>
+                      {/* Name with voice indicator */}
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-display text-base tracking-[-0.02em] md:text-lg">
+                          {persona.name}
+                        </h3>
+                        {persona.voice && (
+                          <span
+                            className="text-sm"
+                            title="支持语音播放"
+                          >
+                            🔊
+                          </span>
+                        )}
+                      </div>
 
                       {/* Description */}
                       <p className="mt-2 text-xs leading-5 text-[color:var(--muted)] md:mt-3 md:text-sm md:leading-6">

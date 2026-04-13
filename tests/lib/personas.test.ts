@@ -39,7 +39,7 @@ describe("personas", () => {
   it("huchenfeng has voice configuration", () => {
     expect(personas.huchenfeng.voice).toBeDefined();
     expect(personas.huchenfeng.voice?.voiceId).toBe(
-      "cosyvoice-v3.5-plus-bailian-d6a46f7a33a145fe945e81de65722a7f"
+      "cosyvoice-v3.5-plus-bailian-ea19cd5a581e47d38638623db910746a"
     );
   });
 

@@ -72,7 +72,7 @@ export const personas: Record<PersonaId, Persona> = {
     retrieval: "vector",
     exampleQuestions: ['月入五千能存钱吗？', '年轻人该买房吗？', '消费主义陷阱怎么识别？'],
     voice: {
-      voiceId: "cosyvoice-v3.5-plus-bailian-d6a46f7a33a145fe945e81de65722a7f",
+      voiceId: "cosyvoice-v3.5-plus-bailian-ea19cd5a581e47d38638623db910746a",
       speed: 1.0,
     },
   },

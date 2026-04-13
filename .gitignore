@@ -1,6 +1,8 @@
 .next
 node_modules
 .env.local
+.env.production
 .vercel
 .playwright-mcp
 .wrangler
+tsconfig.tsbuildinfo

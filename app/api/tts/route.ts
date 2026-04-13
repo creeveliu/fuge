@@ -78,9 +78,12 @@ export async function POST(request: NextRequest) {
     const audioResponse = await fetch(audioUrl);
     const audioBuffer = await audioResponse.arrayBuffer();
 
+    // qwen3-tts-vc returns WAV format
+    const contentType = audioUrl.includes(".wav") ? "audio/wav" : "audio/mpeg";
+
     return new NextResponse(audioBuffer, {
       headers: {
-        "Content-Type": "audio/mpeg",
+        "Content-Type": contentType,
         "Content-Length": audioBuffer.byteLength.toString(),
       },
     });

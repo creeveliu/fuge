@@ -61,21 +61,32 @@ POST /api/tts
 BAILIAN_TTS_API_KEY=      # 百炼语音合成 API Key
 ```
 
-**API 调用示例**（百炼 TTS）：
+**API 调用**（百炼 CosyVoice TTS）：
+
+> ⚠️ **待确认**：实现时需验证确切的 API endpoint 和参数格式。参考：
+> - 阿里云百炼控制台：https://bailian.console.aliyun.com/
+> - CosyVoice 文档目录：https://help.aliyun.com/zh/model-studio/developer-reference/
+
+**预期的调用格式**（基于 DashScope API 模式）：
 ```typescript
-// 参考百炼 TTS API 文档
 const response = await fetch('https://dashscope.aliyuncs.com/api/v1/services/audio/tts', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.BAILIAN_TTS_API_KEY}`,
     'Content-Type': 'application/json',
+    'X-DashScope-Async': 'enable',  // 可能需要异步模式
   },
   body: JSON.stringify({
     model: 'cosyvoice-v3.5-plus',
     input: text,
-    voice: voiceId,  // 从 persona.voice.voiceId 获取
+    voice: voiceId,  // cosyvoice-v3.5-plus-bailian-812a621be1304cea9ef7460f772b393b
+    format: 'mp3',   // 或 wav
   }),
 });
+
+// 响应可能是：
+// 1. 直接返回音频数据（需要设置合适的 response headers）
+// 2. 返回任务 ID，需要轮询获取结果（异步模式）
 ```
 
 ---

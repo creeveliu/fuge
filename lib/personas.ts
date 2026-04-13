@@ -70,7 +70,11 @@ export const personas: Record<PersonaId, Persona> = {
     wikiUrl: "https://baike.baidu.com/search/word?word=%E6%88%B7%E6%99%A8%E9%A3%8E",
     mode: "skill-native",
     retrieval: "vector",
-    exampleQuestions: ['月入五千能存钱吗？', '年轻人该买房吗？', '消费主义陷阱怎么识别？']
+    exampleQuestions: ['月入五千能存钱吗？', '年轻人该买房吗？', '消费主义陷阱怎么识别？'],
+    voice: {
+      voiceId: "cosyvoice-v3.5-plus-bailian-d6a46f7a33a145fe945e81de65722a7f",
+      speed: 1.0,
+    },
   },
   zhangxuefeng: {
     id: "zhangxuefeng",

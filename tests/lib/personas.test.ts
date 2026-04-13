@@ -36,9 +36,16 @@ describe("personas", () => {
     );
   });
 
+  it("huchenfeng has voice configuration", () => {
+    expect(personas.huchenfeng.voice).toBeDefined();
+    expect(personas.huchenfeng.voice?.voiceId).toBe(
+      "cosyvoice-v3.5-plus-bailian-d6a46f7a33a145fe945e81de65722a7f"
+    );
+  });
+
   it("other personas do not have voice configuration", () => {
     const personaIdsWithoutVoice = [
-      "huchenfeng", "zhangxuefeng", "guodegang", "tongjincheng",
+      "zhangxuefeng", "guodegang", "tongjincheng",
       "buffett", "changshuanuo", "musk", "feynman", "marx",
       "karpathy", "mises", "mrbeast", "munger", "naval",
       "graham", "jobs", "taleb", "trump", "zhangyiming", "zizek"

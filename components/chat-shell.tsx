@@ -418,6 +418,7 @@ export default function ChatShell(props: {
                         )}
                         {/* Voice player for assistant messages - show for completed messages */}
                         {personas[props.personaId as keyof typeof personas]?.voice &&
+                          message.role === "assistant" &&
                           message.content &&
                           !isAnimatingText &&
                           !isAwaitingFirstChunk &&

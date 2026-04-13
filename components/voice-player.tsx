@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 type VoicePlayerProps = {
   text: string;
@@ -78,6 +78,18 @@ export default function VoicePlayer({
       audioRef.current.currentTime = 0;
       setIsPlaying(false);
     }
+  }, []);
+
+  // Cleanup blob URL and audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioUrlRef.current) {
+        URL.revokeObjectURL(audioUrlRef.current);
+      }
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
   }, []);
 
   // Auto-play on mount if enabled

@@ -33,6 +33,7 @@ export default function ChatShell(props: {
   exampleQuestions: string[];
   readmeUrl: string;
   wikiUrl: string;
+  voiceEnabled: boolean;
 }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -406,7 +407,8 @@ export default function ChatShell(props: {
                           </div>
                         )}
                         {/* Voice player for assistant messages - show for completed messages */}
-                        {personas[props.personaId as keyof typeof personas]?.voice &&
+                        {props.voiceEnabled &&
+                          personas[props.personaId as keyof typeof personas]?.voice &&
                           message.role === "assistant" &&
                           message.content &&
                           !isAnimatingText &&

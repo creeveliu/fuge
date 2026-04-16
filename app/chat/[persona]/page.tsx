@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import ChatShell from "@/components/chat-shell";
-import { personas, type PersonaId } from "@/lib/personas";
+import { personas, type PersonaId, isVoiceEnabled } from "@/lib/personas";
 
 type PageProps = {
   params: Promise<{ persona: string }>;
@@ -23,6 +23,7 @@ export default async function ChatPage({ params }: PageProps) {
       exampleQuestions={config.exampleQuestions}
       readmeUrl={config.readmeUrl}
       wikiUrl={config.wikiUrl}
+      voiceEnabled={isVoiceEnabled()}
     />
   );
 }

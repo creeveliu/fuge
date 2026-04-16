@@ -1,3 +1,6 @@
+/** 语音功能开关，由环境变量 ENABLE_VOICE 控制 */
+export const isVoiceEnabled = () => process.env.ENABLE_VOICE === "true";
+
 export type PersonaId =
   | "fengge"
   | "huchenfeng"
@@ -54,10 +57,10 @@ export const personas: Record<PersonaId, Persona> = {
     mode: "skill-native",
     retrieval: "none",
     exampleQuestions: ['年轻人该怎么闯？', '工资三千房租两千，怎么活？', '该不该回老家？'],
-    // voice: {
-    //   voiceId: "qwen-tts-vc-bailian-voice-20260413125802994-9041",
-    //   speed: 1.0,
-    // },
+    voice: {
+      voiceId: "qwen-tts-vc-bailian-voice-20260413125802994-9041",
+      speed: 1.0,
+    },
   },
   huchenfeng: {
     id: "huchenfeng",
@@ -71,10 +74,10 @@ export const personas: Record<PersonaId, Persona> = {
     mode: "skill-native",
     retrieval: "vector",
     exampleQuestions: ['月入五千能存钱吗？', '年轻人该买房吗？', '消费主义陷阱怎么识别？'],
-    // voice: {
-    //   voiceId: "qwen-tts-vc-bailian-voice-20260413125648166-49e0",
-    //   speed: 1.0,
-    // },
+    voice: {
+      voiceId: "qwen-tts-vc-bailian-voice-20260413125648166-49e0",
+      speed: 1.0,
+    },
   },
   zhangxuefeng: {
     id: "zhangxuefeng",

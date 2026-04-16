@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { personas, PersonaId } from "@/lib/personas";
+import { personas, PersonaId, isVoiceEnabled } from "@/lib/personas";
 
 // 人物分类
 const categories: Array<{
@@ -84,7 +84,7 @@ export default function HomePage() {
                         <h3 className="font-display text-base tracking-[-0.02em] md:text-lg">
                           {persona.name}
                         </h3>
-                        {persona.voice && (
+                        {isVoiceEnabled() && persona.voice && (
                           <span title="支持语音播放">
                             <svg
                               className="w-4 h-4 text-[color:var(--accent)]"

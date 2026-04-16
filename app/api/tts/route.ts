@@ -28,6 +28,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Voice feature toggle
+    if (process.env.ENABLE_VOICE !== "true") {
+      return NextResponse.json(
+        { error: "Voice feature is disabled" },
+        { status: 503 }
+      );
+    }
+
     const apiKey = process.env.BAILIAN_TTS_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
